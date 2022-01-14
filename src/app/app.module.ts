@@ -31,6 +31,9 @@ import { PedagogicGuidesComponent } from './components/sections/pedagogic-guides
 import { ProfessorPedagogicGuidesComponent } from './components/sections/professor-pedagogic-guides/professor-pedagogic-guides.component';
 import { StudyProgramListComponent } from './components/sections/learning-unit/study-program-list/study-program-list.component';
 import { EvaluationGuideListComponent } from './components/sections/learning-unit/evaluation-guide-list/evaluation-guide-list.component';
+import { AdministratorComponent } from './components/sections/administrator/administrator.component';
+import { HomeComponent } from './components/sections/home/home.component';
+import { ClientComponent } from './components/sections/client/client.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { EvaluationGuideListComponent } from './components/sections/learning-uni
     PedagogicGuidesComponent,
     ProfessorPedagogicGuidesComponent,
     StudyProgramListComponent,
-    EvaluationGuideListComponent
+    EvaluationGuideListComponent,
+    AdministratorComponent,
+    HomeComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,

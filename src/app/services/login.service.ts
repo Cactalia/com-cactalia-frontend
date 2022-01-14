@@ -20,9 +20,9 @@ declare interface RouteInfo {
 }
 
 export const CONS_ROUTES_ADMIN: RouteInfo[] = [
-  { path: '/perfil', title: 'Perfil', icon: 'person', class: '' },
-  { path: '/administrador/coordinadores', title: 'Coordinadores', icon: 'record_voice_over', class: '' },
-  { path: '/administrador/profesores', title: 'Profesores', icon: 'people_alt', class: '' },
+  { path: '/inicio', title: 'Inicio', icon: 'home', class: '' },
+  { path: '/admin/administradores', title: 'Administradores', icon: 'badge', class: '' },
+  { path: '/admin/clientes', title: 'Clientes', icon: 'people_alt', class: '' },
 ];
 
 export const CONS_ROUTES_COORDINATOR: RouteInfo[] = [
