@@ -1,18 +1,16 @@
+$primary: #55919e;
+$secondary: #e6eff2;
+$third: #d8d8bd;
+
+//pink e0cccb
+//beige #d8d8bd
+
 $white: #ffffff;
 $dark: #000000;
 $gray: #67696b;
-$green: #55919e;
-$green2: #e6eff2;
-
-$gold: #9C8412;
-$gold-o10:#f3efe4;
-$gold-o60:#beab70;
-$golden2: #d8d8bd;
-
-$primary: #55919e;
 
 $cancelButtonColor: #9b9b9b;
-$confirmButtonColor: #2c5234;
+$confirmButtonColor: $primary;
 
 html {
     overflow-y:scroll;
@@ -23,7 +21,7 @@ input, button, a, p{
 }
 
 body{
-    background: $gold-o10;
+    background: $secondary;
 }
 
 h1,h2,h3,h4,h5,h6, label{
