@@ -1,0 +1,147 @@
+<div class="container-fluid card shadow px-0" *ngIf="!newStudyProgramRequested && idStudyProgramDetail == null && idStudyProgramReview == null">
+    <div class="row mt-4 mx-0">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h5>Programas de estudio</h5>
+            <button class="btn btn-primary d-flex" type="button" (click)="newStudyProgramRequest()">
+                <span class="material-icons text-light mr-1">add</span>
+                Asignar
+            </button>
+        </div>
+        <div class="col-12 align-items-center">
+            <h6>Total de programas de estudio: {{totalStudyPrograms}}</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="col-12 table table-hover mt-2">
+                <thead>
+                    <tr>
+                        <th class="action" scope="col">Versión</th>
+                        <th scope="col">Unidad de aprendizaje</th>
+                        <th class="action" scope="col">Estado</th>
+                        <th class="action" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let studyProgram of studyPrograms">
+                        <td class="action">{{studyProgram.version}}</td>
+                        <td>{{studyProgram.learningUnit}}</td>
+                        <td class="action"><span class="badge" 
+                            [ngClass]="{'badge-secondary' : studyProgram.status == 'Pendiente', 
+                                        'badge-warning' : studyProgram.status == 'En revisión',
+                                        'badge-success' : studyProgram.status == 'Completado'}">
+                            {{studyProgram.status}}
+                            </span>
+                        </td>
+                        <td class="action">
+                            <span title="Ver detalles" *ngIf="studyProgram.status != 'Completado'" class="material-icons mr-3" (click)="showDetail(studyProgram.id)">more_horiz</span>
+                            <span title="Revisión" *ngIf="studyProgram.status == 'En revisión'" class="material-icons mr-3" (click)="showReview(studyProgram.id)">task</span>
+                            <span title="Eliminar" *ngIf="studyProgram.status != 'Completado'" class="material-icons" (click)="deleteStudyProgram(studyProgram.id)">delete</span>
+                            <span title="Descargar" *ngIf="studyProgram.status == 'Completado'" class="material-icons mr-3" (click)="downloadReport(studyProgram.id, studyProgram.learningUnit, studyProgram.version, studyProgram.status)">file_download</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="actualPage<=0">
+                <button class="page-link" (click)="this.getStudyPrograms(actualPage-1)">Anterior</button>
+            </li>
+
+            <li class="page-item" *ngIf="(actualPage-1)>0"> <button class="page-link"
+                    (click)="this.getStudyPrograms(actualPage-2)">{{actualPage-1}}</button></li>
+            <li class="page-item" *ngIf="(actualPage)>0"> <button class="page-link"
+                    (click)="this.getStudyPrograms(actualPage-1)">{{actualPage}}</button></li>
+            <li class="page-item active"><a class="page-link">{{actualPage+1}}</a></li>
+            <li class="page-item" *ngIf="(actualPage+2)<=maxPages"><button class="page-link"
+                    (click)="this.getStudyPrograms(actualPage+1)">{{actualPage+2}}</button></li>
+            <li class="page-item" *ngIf="(actualPage+3)<=maxPages"><button class="page-link"
+                    (click)="this.getStudyPrograms(actualPage+2)">{{actualPage+3}}</button></li>
+
+            <li class="page-item" [class.disabled]="(actualPage+1)>=maxPages">
+                <button class="page-link" (click)="this.getStudyPrograms(actualPage+1)">Siguiente</button>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<study-program-detail *ngIf="idStudyProgramDetail != null" (newItemEvent)="showDetail($event)" class="px-0" [idStudyProgram]="this.idStudyProgramDetail"></study-program-detail>
+
+<study-program-review *ngIf="idStudyProgramReview != null" (newItemEvent)="showReview($event)" class="px-0" [idStudyProgram]="this.idStudyProgramReview"></study-program-review>
+
+<div class="container-fluid card shadow px-0 mb-4" *ngIf="newStudyProgramRequested">
+    <div class="row my-4 mx-0">
+        <div class="col-12">
+            <form class="col-12" [formGroup]="newStudyProgramForm" (ngSubmit)="assign()">
+                <div class="row">
+                    <div class="col-12">
+                        <h5>Nueva asignación de programa de estudio</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="learningUnit">Unidad de aprendizaje</label>
+                        <select class="form-control" id="learningUnit" formControlName="learningUnit"
+                            [class.is-invalid]="newStudyProgramForm.get('learningUnit').errors">
+                            <option selected value="">Seleccionar</option>
+                            <option *ngFor="let learningUnit of learningUnits" value="{{learningUnit.id}}">
+                                {{learningUnit.code}} - {{learningUnit.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <label for="professor">Profesores responsables</label>
+                <div class="row">
+                    <div class="form-group col-12 col-md-10">
+                        <select class="form-control" id="professor" formControlName="professor">
+                            <option selected value="">Seleccionar</option>
+                            <option *ngFor="let professor of professors" value="{{professor.id}}">
+                                {{professor.name}} {{professor.lastname}} {{professor.secondLastname}} -
+                                {{professor.email}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-12 col-md-2">
+                        <button class="btn btn-primary d-flex" type="button" (click)="addProfessor()">
+                            <span class="material-icons text-light mr-1">add</span>
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+                <div class="row" *ngIf="assignProfessors.length>0">
+                    <div class="table-responsive col-12">
+                        <table class="col-12 table table-hover mt-2">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre completo</th>
+                                    <th scope="col">Correo electrónico</th>
+                                    <th class="action" scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let professor of assignProfessors">
+                                    <td>{{professor.name}} {{professor.lastname}} {{professor.secondLastname}}</td>
+                                    <td>{{professor.email}}</td>
+                                    <td class="action">
+                                        <span class="material-icons"
+                                            (click)="removeProfessor(professor.id)">highlight_off</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-12 d-flex justify-content-end">
+                        <button class="btn btn-secondary" type="button" (click)="newStudyProgramRequestCancel()"
+                            [disabled]="loadingNewStudyProgram">Cancelar</button>
+                        <button class="btn btn-primary ml-2"
+                            [disabled]="newStudyProgramForm.invalid || assignProfessors.length<=0 || loadingNewStudyProgram">
+                            <span *ngIf="loadingNewAssign" class="spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+                            Asignar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

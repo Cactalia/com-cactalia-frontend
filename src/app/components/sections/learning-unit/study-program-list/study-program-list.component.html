@@ -1,0 +1,70 @@
+<div class="container-fluid card shadow px-0" *ngIf="idLearningUnit != null">
+    <div class="row mt-4 mx-0">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h5>Programas de estudio</h5>
+        </div>
+        <div class="col-12 align-items-center">
+            <h6>Total de programas de estudio:  {{totalStudyPrograms}}</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="col-12 table table-hover mt-2">
+                <thead>
+                    <tr>
+                        <th class="action" scope="col">Versión</th>
+                        <th scope="col">Unidad de aprendizaje</th>
+                        <th class="action" scope="col">Estado</th>
+                        <th scope="col">Fecha de aprobación</th>
+                        <th class="action" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let studyProgram of studyPrograms">
+                        <td class="action">{{studyProgram.version}}</td>
+                        <td>{{studyProgram.learningUnit}}</td>
+                        <td class="action"><span class="badge" 
+                            [ngClass]="{'badge-secondary' : studyProgram.status == 'Pendiente', 
+                                        'badge-warning' : studyProgram.status == 'En revisión',
+                                        'badge-success' : studyProgram.status == 'Completado'}">
+                            {{studyProgram.status}}
+                            </span>
+                        </td>
+                        <td>{{this.datePipe.transform(studyProgram.approvalDate, "d 'de' MMMM 'de' y")}}</td>
+                        <td class="action">
+                            <span title="Ver detalles" *ngIf="studyProgram.status != 'Completado'" class="material-icons mr-3">more_horiz</span>
+                            <span title="Revisión" *ngIf="studyProgram.status == 'En revisión'" class="material-icons mr-3">task</span>
+                            <span title="Eliminar" *ngIf="studyProgram.status != 'Completado'" class="material-icons">delete</span>
+                            <span title="Descargar" *ngIf="studyProgram.status == 'Completado'" class="material-icons mr-3" (click)="downloadReport(studyProgram.id, studyProgram.learningUnit, studyProgram.version, studyProgram.status)">file_download</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="actualPage<=0">
+                <button class="page-link" (click)="this.getStudyProgramList(actualPage-1)">Anterior</button>
+            </li>
+
+            <li class="page-item" *ngIf="(actualPage-1)>0"> <button class="page-link"
+                    (click)="this.getStudyProgramList(actualPage-2)">{{actualPage-1}}</button></li>
+            <li class="page-item" *ngIf="(actualPage)>0"> <button class="page-link"
+                    (click)="this.getStudyProgramList(actualPage-1)">{{actualPage}}</button></li>
+            <li class="page-item active"><a class="page-link">{{actualPage+1}}</a></li>
+            <li class="page-item" *ngIf="(actualPage+2)<=maxPages"><button class="page-link"
+                    (click)="this.getStudyProgramList(actualPage+1)">{{actualPage+2}}</button></li>
+            <li class="page-item" *ngIf="(actualPage+3)<=maxPages"><button class="page-link"
+                    (click)="this.getStudyProgramList(actualPage+2)">{{actualPage+3}}</button></li>
+
+            <li class="page-item" [class.disabled]="(actualPage+1)>=maxPages">
+                <button class="page-link" (click)="this.getStudyProgramList(actualPage+1)">Siguiente</button>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="row container-fluid px-0 mx-0 mb-4 pr-2">   
+        <div class="col-12 d-flex justify-content-end">
+            <button class="btn btn-secondary" type="button" (click)="backToLearningUnitList()">Regresar</button>
+        </div>
+    </div>
+</div>

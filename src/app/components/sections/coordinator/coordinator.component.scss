@@ -1,0 +1,37 @@
+@import "../../../../styles.scss";
+
+.card{
+    overflow: hidden;
+}
+
+h5{
+    color: $primary;
+    display: inline;
+}
+
+th{
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 16px;
+    font-weight: 500;
+    background: $gold-o60;
+    color: $white;
+}
+
+.action{
+    text-align: center;
+}
+
+td{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+.active a{
+    background: $primary !important;
+    border-color: $primary;
+}
+
+.page-link{
+    color: $gray;
+}
+

@@ -1,0 +1,64 @@
+<div class="container-fluid card shadow px-0" *ngIf="idStudyProgramDetail == null">
+    <div class="row mt-4 mx-0">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h5>Programas de estudio</h5>
+        </div>
+        <div class="col-12 align-items-center">
+            <h6>Total de programas de estudio: {{totalStudyPrograms}}</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="col-12 table table-hover mt-2">
+                <thead>
+                    <tr>
+                        <th class="action" scope="col">Versión</th>
+                        <th scope="col">Unidad de aprendizaje</th>
+                        <th class="action" scope="col">Estado</th>
+                        <th class="action" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let studyProgram of studyPrograms">
+                        <td class="action">{{studyProgram.version}}</td>
+                        <td>{{studyProgram.learningUnit}}</td>
+                        <td class="action"><span class="badge" 
+                            [ngClass]="{'badge-secondary' : studyProgram.status == 'Pendiente', 
+                                        'badge-warning' : studyProgram.status == 'En revisión',
+                                        'badge-success' : studyProgram.status == 'Completado'}">
+                            {{studyProgram.status}}
+                            </span>
+                        </td>
+                        <td class="action" *ngIf="studyProgram.status != 'Pendiente'">
+                            <span class="material-icons mr-3" (click)="downloadReport(studyProgram.id, studyProgram.learningUnit, studyProgram.version, studyProgram.status)" title="Descargar">file_download</span>
+                        </td>
+                        <td class="action" *ngIf="studyProgram.status == 'Pendiente'">
+                            <span class="material-icons mr-3" (click)="showDetail(studyProgram.id)" title="Ver detalles">edit_note</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="actualPage<=0">
+                <button class="page-link" (click)="this.getStudyPrograms(actualPage-1)">Anterior</button>
+            </li>
+
+            <li class="page-item" *ngIf="(actualPage-1)>0"> <button class="page-link"
+                    (click)="this.getStudyPrograms(actualPage-2)">{{actualPage-1}}</button></li>
+            <li class="page-item" *ngIf="(actualPage)>0"> <button class="page-link"
+                    (click)="this.getStudyPrograms(actualPage-1)">{{actualPage}}</button></li>
+            <li class="page-item active"><a class="page-link">{{actualPage+1}}</a></li>
+            <li class="page-item" *ngIf="(actualPage+2)<=maxPages"><button class="page-link"
+                    (click)="this.getStudyPrograms(actualPage+1)">{{actualPage+2}}</button></li>
+            <li class="page-item" *ngIf="(actualPage+3)<=maxPages"><button class="page-link"
+                    (click)="this.getStudyPrograms(actualPage+2)">{{actualPage+3}}</button></li>
+
+            <li class="page-item" [class.disabled]="(actualPage+1)>=maxPages">
+                <button class="page-link" (click)="this.getStudyPrograms(actualPage+1)">Siguiente</button>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<study-program-professor-detail *ngIf="idStudyProgramDetail != null" (newItemEvent)="showDetail($event)" [idStudyProgram]="this.idStudyProgramDetail"></study-program-professor-detail>

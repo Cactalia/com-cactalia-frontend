@@ -1,0 +1,59 @@
+<div class="container-fluid card shadow px-0" *ngIf="idLearningUnit == null && idLearningUnitEG == null">
+    <div class="row mt-4 mx-0">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h5>Lista de unidades de aprendizaje</h5>
+        </div>
+        <div class="col-12 align-items-center">
+            <h6>Total de unidades de aprendizaje: {{totalLearningUnits}}</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="col-12 table table-hover mt-2">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col" class="center">Semestre</th>
+                        <th class="action" scope="col">PE</th>
+                        <th class="action" scope="col">GE</th>
+                        <th class="action" scope="col">GP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let learningunit of learningUnits">
+                        <td>{{learningunit.code}} - {{learningunit.name}}</td>
+                        <td class="center">{{learningunit.period}}</td>
+                        <td class="action">
+                            <span class="material-icons" (click)="showStudyProgramList(learningunit.id)">more_horiz</span>
+                        </td>
+                        <td class="action">
+                            <span class="material-icons" (click)="showEvaluationGuideList(learningunit.id)">more_horiz</span>
+                        </td>
+                        <td class="action">
+                            <span class="material-icons">more_horiz</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <nav>
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="actualPage<=0">
+            <button class="page-link" (click)="this.getLearningUnits(actualPage-1)">Anterior</button>
+          </li>
+
+          <li class="page-item" *ngIf="(actualPage-1)>0">        <button class="page-link" (click)="this.getLearningUnits(actualPage-2)">{{actualPage-1}}</button></li>
+          <li class="page-item" *ngIf="(actualPage)>0">          <button class="page-link" (click)="this.getLearningUnits(actualPage-1)">{{actualPage}}</button></li>
+          <li class="page-item active"><a class="page-link">{{actualPage+1}}</a></li>
+          <li class="page-item" *ngIf="(actualPage+2)<=maxPages"><button class="page-link" (click)="this.getLearningUnits(actualPage+1)">{{actualPage+2}}</button></li>
+          <li class="page-item" *ngIf="(actualPage+3)<=maxPages"><button class="page-link" (click)="this.getLearningUnits(actualPage+2)">{{actualPage+3}}</button></li>
+
+          <li class="page-item" [class.disabled]="(actualPage+1)>=maxPages">
+            <button class="page-link" (click)="this.getLearningUnits(actualPage+1)">Siguiente</button>
+          </li>
+        </ul>
+    </nav>
+</div>
+
+<study-program-list *ngIf="idLearningUnit != null" class="px-0" (newItemEvent)="showStudyProgramList($event)" [idLearningUnit]="this.idLearningUnit"></study-program-list>
+
+<evaluation-guide-list *ngIf="idLearningUnitEG != null" class="px-0" (newItemEvent)="showEvaluationGuideList($event)" [idLearningUnit]="this.idLearningUnitEG"></evaluation-guide-list>

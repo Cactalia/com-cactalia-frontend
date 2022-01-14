@@ -1,0 +1,66 @@
+@import "../../../../styles.scss";
+
+nav{
+    justify-content: left;
+}
+
+.logo{
+    width: 55px;;
+}
+
+.navbar-brand {
+    color: $dark;
+    display: block;
+    font-size: 15px;
+
+    .t1{
+        font-weight: 600;
+        border-bottom: 1px solid $dark;
+    }
+
+    .t2{
+        font-weight: 300;
+    }
+}
+
+.exit{
+    padding-top: 4px;
+}
+
+ul{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+@media (max-width: 992px) {
+    .logo {
+      margin-left: 10px;
+    }
+}
+
+@media (max-width: 518px) {
+    .navbar-brand {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 470px) {
+    .navbar-brand {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 436px) {
+    .navbar-brand {
+        display: none;
+    }
+
+    .logo{
+        display: none;
+    }
+
+    .exit{
+        padding-top: 0px;
+    }
+}

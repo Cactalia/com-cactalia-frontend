@@ -1,0 +1,47 @@
+@import "../../../styles.scss";
+
+.container {
+    .brand {
+        text-align: center;
+        img {
+            width: 20%;
+            margin-bottom: 15px;
+        }
+        h1 {
+            color: $gray;
+            font-weight: 800;
+            font-size: 35px;
+            display: inline-block;
+        }
+    }
+    .form {
+        h3 {
+            color: $gray;
+            text-align: center;
+        }
+
+        button {
+            background: $green !important;
+        }
+
+        a {
+            text-align: center;
+            display: block;
+            color: $gray !important;
+        }
+    }
+}
+
+.container::before{
+    content: "";
+    background-color: $green2;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    background-attachment: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.60;
+}

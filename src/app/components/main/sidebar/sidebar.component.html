@@ -1,0 +1,10 @@
+<ul class="nav flex-column">
+    <li class="nav-item" *ngFor="let menuItem of menuItems" routerLink="{{menuItem.path}}" routerLinkActive="active-link">
+        <a class="nav-link">
+            <div class="d-flex align-items-center">
+                <i class="material-icons mr-2">{{menuItem.icon}}</i>
+                <span class="nav-link-text">{{menuItem.title}}</span>                            
+            </div>
+        </a>
+    </li>
+</ul>
