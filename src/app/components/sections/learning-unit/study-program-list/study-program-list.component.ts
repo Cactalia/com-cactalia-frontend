@@ -57,7 +57,7 @@ export class StudyProgramListComponent implements OnInit {
           icon: 'info',
           title: 'Oops...',
           text: 'Unidad de aprendizaje sin programas de estudio completados',
-          confirmButtonColor: '#2c5234',
+          confirmButtonColor: '#55919e',
           cancelButtonColor: '#9b9b9b',
         })
         this.backToLearningUnitList();        

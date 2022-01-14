@@ -103,7 +103,7 @@ export class EvaluationGuideDetailComponent implements OnInit {
       text: "No podrás revertir esto",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#2c5234',
+      confirmButtonColor: '#55919e',
       cancelButtonColor: '#9b9b9b',
       reverseButtons: true,
       confirmButtonText: 'Eliminar',
@@ -118,7 +118,7 @@ export class EvaluationGuideDetailComponent implements OnInit {
             icon: 'success',
             title: '¡Éxito!',
             text: 'Guía de evaluación eliminada correctamente.',
-            confirmButtonColor: '#2c5234',
+            confirmButtonColor: '#55919e',
             cancelButtonColor: '#9b9b9b',
           })
         }, error => {
@@ -187,7 +187,7 @@ export class EvaluationGuideDetailComponent implements OnInit {
       text: "Confirma esta acción",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#2c5234',
+      confirmButtonColor: '#55919e',
       cancelButtonColor: '#9b9b9b',
       reverseButtons: true,
       confirmButtonText: 'Modificar',
@@ -204,7 +204,7 @@ export class EvaluationGuideDetailComponent implements OnInit {
           Swal.fire({
             icon: 'success',
             title: '¡Éxito!',
-            confirmButtonColor: '#2c5234',
+            confirmButtonColor: '#55919e',
             cancelButtonColor: '#9b9b9b',
             text: 'Asignación modificada correctamente.',
           });

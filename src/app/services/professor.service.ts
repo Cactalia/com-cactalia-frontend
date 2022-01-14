@@ -72,7 +72,7 @@ export class ProfessorService {
           icon: 'error',
           title: 'Oops!',
           text: e.error.error.message.replaceAll(/~/g, ""),
-          confirmButtonColor: '#2c5234',
+          confirmButtonColor: '#55919e',
           cancelButtonColor: '#9b9b9b',
         });
         return throwError("");
@@ -96,7 +96,7 @@ export class ProfessorService {
           icon: 'error',
           title: 'Oops!',
           text: e.error.error.message.replaceAll(/~/g, ""),
-          confirmButtonColor: '#2c5234',
+          confirmButtonColor: '#55919e',
           cancelButtonColor: '#9b9b9b',
         });
         return throwError("");
@@ -137,7 +137,7 @@ export class ProfessorService {
           icon: 'error',
           title: 'Oops!',
           text: e.error.error.message.replaceAll(/~/g, ""),
-          confirmButtonColor: '#2c5234',
+          confirmButtonColor: '#55919e',
           cancelButtonColor: '#9b9b9b',
         });
         return throwError("");
@@ -165,7 +165,7 @@ export class ProfessorService {
           icon: 'error',
           title: 'Oops!',
           text: e.error.error.message.replaceAll(/~/g, ""),
-          confirmButtonColor: '#2c5234',
+          confirmButtonColor: '#55919e',
           cancelButtonColor: '#9b9b9b',
         });
         return throwError("");

@@ -112,7 +112,7 @@ export class StudyProgramProfessorDetailComponent implements OnInit {
       text: "Confirma esta acción",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#2c5234',
+      confirmButtonColor: '#55919e',
       cancelButtonColor: '#9b9b9b',
       reverseButtons: true,
       confirmButtonText: 'Completar asignación',
@@ -135,7 +135,7 @@ export class StudyProgramProfessorDetailComponent implements OnInit {
           Swal.fire({
             icon: 'success',
             title: '¡Éxito!',
-            confirmButtonColor: '#2c5234',
+            confirmButtonColor: '#55919e',
             cancelButtonColor: '#9b9b9b',
             text: 'Asignación completada correctamente.',
           });

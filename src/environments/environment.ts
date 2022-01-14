@@ -6,6 +6,6 @@
  */
 export const environment = {
   production: false,
-  apiHostname: 'http://localhost:8080/',
-  authTokenKey: 'vttoken',
+  apiHostname: 'http://localhost:8763/',
+  authTokenKey: 'cacttkn',
 };

@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
         text: "Confirma esta acción.",
         icon: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#2c5234',
+        confirmButtonColor: '#55919e',
         cancelButtonColor: '#9b9b9b',
         reverseButtons: true,
         cancelButtonText: 'Cancelar',
@@ -95,7 +95,7 @@ export class ProfileComponent implements OnInit {
               icon: 'success',
               title: '¡Éxito!',
               text: 'Perfil actualizado correctamente.',
-              confirmButtonColor: '#2c5234',
+              confirmButtonColor: '#55919e',
               cancelButtonColor: '#9b9b9b',
             })
           }, error => {

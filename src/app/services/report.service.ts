@@ -41,7 +41,7 @@ export class ReportService {
           icon: 'error',
           title: 'Oops!',
           text: "Error al descargar archivo.",
-          confirmButtonColor: '#2c5234',
+          confirmButtonColor: '#55919e',
           cancelButtonColor: '#9b9b9b',
         });
         return throwError("");
@@ -94,7 +94,7 @@ export class ReportService {
           icon: 'error',
           title: 'Oops!',
           text: "Error al descargar archivo.",
-          confirmButtonColor: '#2c5234',
+          confirmButtonColor: '#55919e',
           cancelButtonColor: '#9b9b9b',
         });
         return throwError("");

@@ -58,7 +58,7 @@ export class UserService {
           icon: 'error',
           title: 'Oops!', 
           text: e.error.error.message.replaceAll(/~/g,""),
-          confirmButtonColor: '#2c5234',
+          confirmButtonColor: '#55919e',
           cancelButtonColor: '#9b9b9b',});
         return throwError("");
       })
@@ -74,7 +74,7 @@ export class UserService {
     return this.http.put(API_USER_URL + '/reset-password?email=' + email, null).pipe(
       catchError(e=>{
         Swal.fire({icon: 'error',title: 'Oops...', text:'Ha ocurrido un error al procesar su solicitud.',
-        confirmButtonColor: '#2c5234', cancelButtonColor: '#9b9b9b', confirmButtonText: 'Cerrar',});
+        confirmButtonColor: '#55919e', cancelButtonColor: '#9b9b9b', confirmButtonText: 'Cerrar',});
         return throwError("");
       })
     );

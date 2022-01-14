@@ -102,7 +102,7 @@ export class ProfessorAdministratorComponent implements OnInit {
       text: "Confirma esta acción",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#2c5234',
+      confirmButtonColor: '#55919e',
       cancelButtonColor: '#9b9b9b',
       reverseButtons: true,
       confirmButtonText: 'Registrar',
@@ -130,7 +130,7 @@ export class ProfessorAdministratorComponent implements OnInit {
             icon: 'success',
             title: '¡Éxito!',
             text: 'Profesor registrado correctamente.',
-            confirmButtonColor: '#2c5234',
+            confirmButtonColor: '#55919e',
             cancelButtonColor: '#9b9b9b',
           });
         }, error => {
@@ -151,7 +151,7 @@ export class ProfessorAdministratorComponent implements OnInit {
       text: "No podrás revertir esto",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#2c5234',
+      confirmButtonColor: '#55919e',
       cancelButtonColor: '#9b9b9b',
       reverseButtons: true,
       confirmButtonText: 'Eliminar',
@@ -164,7 +164,7 @@ export class ProfessorAdministratorComponent implements OnInit {
             icon: 'success',
             title: '¡Éxito!',
             text: 'Profesor eliminado correctamente.',
-            confirmButtonColor: '#2c5234',
+            confirmButtonColor: '#55919e',
             cancelButtonColor: '#9b9b9b',
           })
         });

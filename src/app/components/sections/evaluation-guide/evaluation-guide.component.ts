@@ -195,7 +195,7 @@ export class EvaluationGuideComponent implements OnInit {
       text: "Confirma esta acción",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#2c5234',
+      confirmButtonColor: '#55919e',
       cancelButtonColor: '#9b9b9b',
       reverseButtons: true,
       confirmButtonText: 'Registrar',
@@ -225,7 +225,7 @@ export class EvaluationGuideComponent implements OnInit {
             icon: 'success',
             title: '¡Éxito!',
             text: 'Asignación registrada correctamente.',
-            confirmButtonColor: '#2c5234',
+            confirmButtonColor: '#55919e',
             cancelButtonColor: '#9b9b9b',
           });
         }, error => {
@@ -246,7 +246,7 @@ export class EvaluationGuideComponent implements OnInit {
       text: "No podrás revertir esto",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#2c5234',
+      confirmButtonColor: '#55919e',
       cancelButtonColor: '#9b9b9b',
       reverseButtons: true,
       confirmButtonText: 'Eliminar',
@@ -259,7 +259,7 @@ export class EvaluationGuideComponent implements OnInit {
             icon: 'success',
             title: '¡Éxito!',
             text: 'Guía de evaluación eliminada correctamente.',
-            confirmButtonColor: '#2c5234',
+            confirmButtonColor: '#55919e',
             cancelButtonColor: '#9b9b9b',
           })
         });

@@ -68,7 +68,7 @@ export class EvaluationGuideReviewComponent implements OnInit {
       text: "No podrás revertir esto",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#2c5234',
+      confirmButtonColor: '#55919e',
       cancelButtonColor: '#9b9b9b',
       reverseButtons: true,
       confirmButtonText: 'Rechazar',
@@ -83,7 +83,7 @@ export class EvaluationGuideReviewComponent implements OnInit {
             icon: 'success',
             title: '¡Éxito!',
             text: 'Guía de evaluación rechazada correctamente.',
-            confirmButtonColor: '#2c5234',
+            confirmButtonColor: '#55919e',
             cancelButtonColor: '#9b9b9b',
           })
         }, error => {
@@ -103,7 +103,7 @@ export class EvaluationGuideReviewComponent implements OnInit {
       text: "No podrás revertir esto",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#2c5234',
+      confirmButtonColor: '#55919e',
       cancelButtonColor: '#9b9b9b',
       reverseButtons: true,
       confirmButtonText: 'Aprobar',
@@ -118,7 +118,7 @@ export class EvaluationGuideReviewComponent implements OnInit {
             icon: 'success',
             title: '¡Éxito!',
             text: 'Guía de evaluación aprobada correctamente.',
-            confirmButtonColor: '#2c5234',
+            confirmButtonColor: '#55919e',
             cancelButtonColor: '#9b9b9b',
           })
         }, error => {

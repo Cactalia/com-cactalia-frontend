@@ -57,7 +57,7 @@ export class EvaluationGuideListComponent implements OnInit {
           icon: 'info',
           title: 'Oops...',
           text: 'Unidad de aprendizaje sin guías de evaluación completadas',
-          confirmButtonColor: '#2c5234',
+          confirmButtonColor: '#55919e',
           cancelButtonColor: '#9b9b9b',
         })
         this.backToLearningUnitList();        

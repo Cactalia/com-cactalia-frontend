@@ -7,7 +7,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Token } from '../models/Token.model';
-import { User } from '../models/User.model';
+import { Login } from '../models/Login.model';
 import { environment } from '../../environments/environment';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -61,7 +61,7 @@ export class LoginService {
    * @param email email ingresado 
    * @param password contraseña ingresada
    */
-  login(email: string, password: string): Observable<User> {
+  login(email: string, password: string): Observable<Login> {
     const headers = {
       'Authorization': 'Basic ' + btoa('angularapp:12345'),
       'Content-type': 'application/x-www-form-urlencoded'
@@ -71,7 +71,7 @@ export class LoginService {
       .set('password', password)
       .set('grant_type', 'password');
 
-    return this.http.post<User>(API_OAUTH_URL, body, { headers })
+    return this.http.post<Login>(API_OAUTH_URL, body, { headers })
       .pipe(catchError(e => {
         return throwError(e.error.errors);
       })
