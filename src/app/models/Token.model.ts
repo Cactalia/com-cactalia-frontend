@@ -5,13 +5,11 @@
  * CREADO POR: Oscar Emmanuel Lechuga Velázquez
  */
 export class Token {
-    id:number;
-    name: string;
+    names: string;
     lastname: string;
-    secondLastname: string;
-    user_name: string;
+    secondLastName: string;
     email: string;
-    idGym: number;
     authorities: string[];  
+    user_name: string;
     exp: number;  
 }
