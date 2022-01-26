@@ -12,7 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/main/navbar/navbar.component';
 import { SidebarComponent } from './components/main/sidebar/sidebar.component';
-import { ProfileComponent } from './components/sections/profile/profile.component';
 import { AdministratorComponent } from './components/sections/administrator/administrator.component';
 import { HomeComponent } from './components/sections/home/home.component';
 import { ClientComponent } from './components/sections/client/client.component';
@@ -24,7 +23,6 @@ import { ClientComponent } from './components/sections/client/client.component';
     MainComponent,
     NavbarComponent,
     SidebarComponent,
-    ProfileComponent,
     AdministratorComponent,
     HomeComponent,
     ClientComponent

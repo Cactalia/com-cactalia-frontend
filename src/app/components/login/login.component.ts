@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Login } from 'src/app/models/Login.model';
 import { Error } from 'src/app/models/Error.model';
-import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { LoginService } from '../../services/login.service';
@@ -22,7 +21,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userFB: FormBuilder,
     private loginService: LoginService,
-    private userService: UserService,
   ) { }
 
   /**
@@ -88,42 +86,4 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async restorePassword() {
-    const { value: email } = await Swal.fire({
-      html:'<h3>Restablecer contraseña</h3>'+
-          '<p>Se enviará una nueva contraseña por correo electrónico si existe una cuenta asociada.</p>',
-      input: 'email',
-      inputPlaceholder: 'Correo electrónico',
-      showCancelButton: true,
-      reverseButtons: true,
-      confirmButtonColor: '#55919e',
-      cancelButtonColor: '#9b9b9b',
-      confirmButtonText: 'Enviar',
-      cancelButtonText: 'Cancelar',
-      inputValidator: (value) => {
-        return new Promise((resolve) => {
-          const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          if (!re.test(String(value).toLowerCase())) {
-            resolve('Correo electrónico inválido.')
-          }else{
-            resolve('')
-          }
-        })
-      }
-    })    
-    if (email) {
-      this.userService.resetPassword(email).subscribe(
-        response =>{
-          Swal.fire({
-            icon: 'success',
-            title: '¡Éxito!',
-            text: 'Solicitud enviada correctamente.',
-            confirmButtonColor: '#55919e',
-            cancelButtonColor: '#9b9b9b',
-            confirmButtonText: 'Cerrar',
-          });
-        }
-      );
-    }
-  }
 }

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
-import { ProfileComponent } from './components/sections/profile/profile.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { AdministratorComponent } from './components/sections/administrator/administrator.component';
 import { HomeComponent } from './components/sections/home/home.component';
@@ -44,16 +43,6 @@ const routes: Routes = [
         }
       },
 
-      {
-        path: 'perfil', component: ProfileComponent, canActivate: [NgxPermissionsGuard],
-        data: {
-          permissions: {
-            only: ['ROLE_ADMIN', 'ROLE_COORDINATOR', 'ROLE_PROFESSOR'],
-            redirectTo: '/iniciar-sesion'
-          }
-        }
-      },
-      
     ]
   },
   { path: 'iniciar-sesion', component: LoginComponent },

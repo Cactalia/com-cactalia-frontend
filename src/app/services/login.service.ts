@@ -25,22 +25,6 @@ export const CONS_ROUTES_ADMIN: RouteInfo[] = [
   { path: '/admin/clientes', title: 'Clientes', icon: 'people_alt', class: '' },
 ];
 
-export const CONS_ROUTES_COORDINATOR: RouteInfo[] = [
-  { path: '/perfil', title: 'Perfil', icon: 'person', class: '' },
-  { path: '/coordinador/profesores', title: 'Profesores', icon: 'people_alt', class: '' },
-  { path: '/coordinador/unidades-aprendizaje', title: 'Unidades de aprendizaje', icon: 'book', class: '' },
-  { path: '/coordinador/programas-estudio', title: 'Programas de estudio', icon: 'library_books', class: '' },
-  { path: '/coordinador/guias-evaluacion', title: 'Guías de evaluación', icon: 'ballot', class: '' },
-  { path: '/coordinador/guias-pedagogicas', title: 'Guías de pedagógicas', icon: 'history_edu', class: '' },
-];
-
-export const CONS_ROUTES_PROFESSOR: RouteInfo[] = [
-  { path: '/perfil', title: 'Perfil', icon: 'person', class: '' },
-  { path: '/profesor/programas-estudio', title: 'Programas de estudio', icon: 'library_books', class: '' },
-  { path: '/profesor/guias-evaluacion', title: 'Guías de evaluación', icon: 'ballot', class: '' },
-  { path: '/profesor/guias-pedagogicas', title: 'Guías de pedagógicas', icon: 'history_edu', class: '' },
-];
-
 const API_OAUTH_URL = environment.apiHostname + 'api/security/v1/oauth/token';
 
 @Injectable({
@@ -104,10 +88,6 @@ export class LoginService {
     let routes: any[];
     if (roles.includes("ROLE_ADMIN")) {
       routes = CONS_ROUTES_ADMIN.filter(menuItem => menuItem);
-    } else if (roles.includes("ROLE_COORDINATOR")) {
-      routes = CONS_ROUTES_COORDINATOR.filter(menuItem => menuItem);
-    } else if (roles.includes("ROLE_PROFESSOR")) {
-      routes = CONS_ROUTES_PROFESSOR.filter(menuItem => menuItem);
     } else {
       routes = null;
     }
