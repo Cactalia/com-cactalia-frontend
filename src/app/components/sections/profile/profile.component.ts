@@ -53,9 +53,9 @@ export class ProfileComponent implements OnInit {
       this.user = response;
       controls.email.setValue(this.user.email);
       controls.grade.setValue(this.user.grade);
-      controls.name.setValue(this.user.name);
-      controls.lastname.setValue(this.user.lastname);
-      controls.secondLastname.setValue(this.user.secondLastname);
+      controls.name.setValue(this.user.names);
+      controls.lastname.setValue(this.user.lastName);
+      controls.secondLastname.setValue(this.user.secondLastName);
       //controls.password.setValue(this.user.password);
     });
   }
