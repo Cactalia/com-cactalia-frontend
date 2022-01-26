@@ -52,7 +52,6 @@ export class ProfileComponent implements OnInit {
     this.userService.findUserById(this.tokenUser.id, this.tokenUser.authorities[0]).subscribe(response => {
       this.user = response;
       controls.email.setValue(this.user.email);
-      controls.grade.setValue(this.user.grade);
       controls.name.setValue(this.user.names);
       controls.lastname.setValue(this.user.lastName);
       controls.secondLastname.setValue(this.user.secondLastName);

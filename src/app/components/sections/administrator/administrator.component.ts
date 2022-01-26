@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Token } from 'src/app/models/Token.model';
 import { LoginService } from 'src/app/services/login.service';
-import { CoordinatorService } from 'src/app/services/coordinator.service';
 import { UserAdminService } from 'src/app/services/userAdmin.service';
-import { DegreeService } from 'src/app/services/degree.service';
 import { environment } from 'src/environments/environment';
-import { Coordinator } from 'src/app/models/Coordinator.model';
 import  Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Degree } from 'src/app/models/Degree.model';
 import { User } from 'src/app/models/User.model';
 
 @Component({
@@ -24,10 +20,8 @@ export class AdministratorComponent implements OnInit {
 
   public newCoordinatorRequested: boolean = false;
   private loadingNewCoordinator: boolean = false;
-  private coordinators: Coordinator[] = [];
   private newCoordinatorForm: FormGroup;
   private actualPage:number;
-  private degrees: Degree[];
   private maxPages:number;
   private maxDate: Date;
   private date: Date;
@@ -35,9 +29,7 @@ export class AdministratorComponent implements OnInit {
   constructor(
     private userFB: FormBuilder,
     private loginService: LoginService,
-    private coordinatorService: CoordinatorService,
     private userAdminService: UserAdminService,
-    private degreeService: DegreeService
   ) {
     this.date = new Date();
     this.maxDate = new Date();
@@ -88,7 +80,7 @@ export class AdministratorComponent implements OnInit {
    */
   newCoordinatorRequest() {
     this.newCoordinatorRequested = true;
-    this.getDegrees();
+    //this.getDegrees();
   }
 
   /**
@@ -111,17 +103,17 @@ export class AdministratorComponent implements OnInit {
   /**
    * getDegrees
    * Método que obtiene los carreras sin coordinador
-   */
+   *
   getDegrees() {
     this.degreeService.selectDegreesWithoutCoordinator().subscribe(response => {
-      this.degrees = response;
+      //this.degrees = response;
     });
   }
 
   /**
    * newCoordinator()
    * Método que registra un nuevo coordinador
-   */
+   *
   newCoordinator() {
     Swal.fire({
       title: '¿Registrar nuevo coordinador?',
@@ -137,8 +129,8 @@ export class AdministratorComponent implements OnInit {
       if (result.isConfirmed) {
         this.loadingNewCoordinator = true;
         const controls = this.newCoordinatorForm.controls;
-        let degrees: Degree = new Degree();
-        let newCoordinator: Coordinator = new Coordinator(
+        //let degrees: Degree = new Degree();
+        /**let newCoordinator: Coordinator = new Coordinator(
           null,
           controls.name.value,
           controls.lastname.value,
@@ -174,7 +166,7 @@ export class AdministratorComponent implements OnInit {
    * Método que elimina a un coordinador por su id
    * @param id id del coordinador a eliminar
    */
-  deleteCoordinator(id: number) {
+  /**deleteCoordinator(id: number) {
     Swal.fire({
       title: '¿Eliminar coordinador?',
       text: "No podrás revertir esto",
@@ -199,6 +191,6 @@ export class AdministratorComponent implements OnInit {
         });
       }
     })
-  }
+  }/**/
 }
 

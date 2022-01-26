@@ -4,7 +4,6 @@
  * FECHA DE CREACIÓN: 17/11/2020
  * CREADO POR: Oscar Emmanuel Lechuga Velázquez
  */
-import { Degree } from "./Degree.model";
 import { Role } from "./role.model";
 
 export class User{
@@ -15,9 +14,7 @@ export class User{
     email: string;
     phoneNumber: number;
     password: string;
-    grade:string;
     roles: Role[];
-    degrees: Degree[];
     access_token:string;
 
     /**
@@ -37,7 +34,6 @@ export class User{
         this.lastName= lastname;
         this.secondLastName= secondLastname;
         this.email= email;
-        this.grade= grade;
         this.password= password;
     }
 }

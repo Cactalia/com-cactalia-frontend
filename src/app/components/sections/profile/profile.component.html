@@ -5,7 +5,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <h4 class="user-name">{{this.user.name}} {{this.user.lastname}} {{this.user.secondLastname}}</h4>
+            <h4 class="user-name">{{this.user.names}} {{this.user.lastName}} {{this.user.secondLastName}}</h4>
         </div>
     </div>
     <div class="row mt-3">
@@ -123,27 +123,3 @@
     </div>
 </div>
 
-<div class="container-fluid card shadow px-0 my-4" *ngIf="this.user.degrees != undefined && this.user.degrees.length >0">
-    <div class="row mt-4 mx-0">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h5>Carreras asignadas</h5>
-        </div>
-        <div class="col-12 align-items-center">
-            <h6>Total de carreras asignadas: {{this.user.degrees.length}}</h6>
-        </div>
-        <div class="table-responsive">
-            <table class="col-12 table mt-2">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let degree of this.user.degrees">
-                        <td>{{degree.name}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
