@@ -8,7 +8,7 @@
             </button>
         </div>
         <div class="col-12 align-items-center">
-            <h6>Total de administradores: {{totalCoordinators}}</h6>
+            <h6>Total de administradores: {{totalUsersAdmins}}</h6>
         </div>
         <div class="table-responsive">
             <table class="col-12 table table-hover mt-2">
@@ -21,10 +21,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let coordinator of coordinators">
-                        <td>{{coordinator.name}} {{coordinator.lastname}} {{coordinator.secondLastname}}</td>
-                        <td>{{coordinator.email}}</td>
-                        <td>{{coordinator.degree.name}}</td>
+                    <tr *ngFor="let userAdmin of usersAdmins">
+                        <td>{{userAdmin.names}} {{userAdmin.lastName}} {{userAdmin.secondLastName}}</td>
+                        <td>{{userAdmin.email}}</td>
+                        <td>{{userAdmin.phoneNumber}}</td>
                         <td class="action">
                             <span title="Eliminar" class="material-icons" (click)="deleteCoordinator(coordinator.id)">delete</span>
                         </td>

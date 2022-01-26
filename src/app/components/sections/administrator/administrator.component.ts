@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Token } from 'src/app/models/Token.model';
 import { LoginService } from 'src/app/services/login.service';
 import { CoordinatorService } from 'src/app/services/coordinator.service';
+import { UserAdminService } from 'src/app/services/userAdmin.service';
 import { DegreeService } from 'src/app/services/degree.service';
 import { environment } from 'src/environments/environment';
 import { Coordinator } from 'src/app/models/Coordinator.model';
 import  Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Degree } from 'src/app/models/Degree.model';
+import { User } from 'src/app/models/User.model';
 
 @Component({
   selector: 'app-administrator',
@@ -17,12 +19,13 @@ import { Degree } from 'src/app/models/Degree.model';
 export class AdministratorComponent implements OnInit {
 
   private tokenUser: Token;
+  private usersAdmins: User[] = [];
+  private totalUsersAdmins:number;
 
   public newCoordinatorRequested: boolean = false;
   private loadingNewCoordinator: boolean = false;
   private coordinators: Coordinator[] = [];
   private newCoordinatorForm: FormGroup;
-  private totalCoordinators:number;
   private actualPage:number;
   private degrees: Degree[];
   private maxPages:number;
@@ -33,6 +36,7 @@ export class AdministratorComponent implements OnInit {
     private userFB: FormBuilder,
     private loginService: LoginService,
     private coordinatorService: CoordinatorService,
+    private userAdminService: UserAdminService,
     private degreeService: DegreeService
   ) {
     this.date = new Date();
@@ -54,24 +58,28 @@ export class AdministratorComponent implements OnInit {
 
     if (localStorage.getItem(environment.authTokenKey) != null) {
       this.tokenUser = this.loginService.getTokenModelByString(localStorage.getItem(environment.authTokenKey).split('.')[1]);
-      this.getCoordinators(this.actualPage);
+      this.getUserAdmins(this.actualPage);
     }
   }
 
+  /*----------------------------------------------------------------------------
+  
   /**
-  * getCoordinators
-  * Método que obtiene los coordinadores registrados.
-  * Obtiene los coordinadores paginados
+  * getUserAdmins
+  * Método que obtiene los administradores registrados.
+  * Obtiene los administradores paginados
   * @param page número de pagina a obtener
   */
-  getCoordinators(page:number) {
-    this.coordinatorService.selectAll(page).subscribe(response => {
-      this.coordinators = response.content;
-      this.maxPages= response.totalPages;
+  getUserAdmins(page:number) {
+    this.userAdminService.selectAll(page,5).subscribe(response => {
+      this.usersAdmins = response.page.content;
+      this.maxPages= response.page.totalPages;
       this.actualPage= page;
-      this.totalCoordinators= response.totalElements;
+      this.totalUsersAdmins= response.page.totalElements;
     });
   }
+
+  /*----------------------------------------------------------------------------
 
   /**
    * newCoordinatorRequest
@@ -142,7 +150,7 @@ export class AdministratorComponent implements OnInit {
           newCoordinator.degree = degrees;
 
         this.coordinatorService.createCoordinator(newCoordinator).subscribe(response => {
-          this.getCoordinators(this.actualPage);
+          this.getUserAdmins(this.actualPage);
           this.newCoordinatorRequestCancel();
           this.clear();
           this.loadingNewCoordinator = false;
@@ -180,7 +188,7 @@ export class AdministratorComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.coordinatorService.deleteCoordinator(id).subscribe(response => {
-          this.getCoordinators(this.actualPage);
+          this.getUserAdmins(this.actualPage);
           Swal.fire({
             icon: 'success',
             title: '¡Éxito!',

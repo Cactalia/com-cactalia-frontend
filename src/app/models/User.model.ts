@@ -8,13 +8,13 @@ import { Degree } from "./Degree.model";
 import { Role } from "./role.model";
 
 export class User{
-    id: number;
+    id: string;
+    names: string;
+    lastName: string;
+    secondLastName: string;
     email: string;
-    username: string;
+    phoneNumber: number;
     password: string;
-    name: string;
-    lastname: string;
-    secondLastname: string;
     grade:string;
     roles: Role[];
     degrees: Degree[];
@@ -31,11 +31,11 @@ export class User{
      * @param grade grado del profesor
      * @param password contraseña
      */
-    constructor(id:number,name:string,lastname:string,secondLastname:string,email:string,grade:string,password:string){
+    constructor(id:string,name:string,lastname:string,secondLastname:string,email:string,grade:string,password:string){
         this.id=id;
-        this.name= name;
-        this.lastname= lastname;
-        this.secondLastname= secondLastname;
+        this.names= name;
+        this.lastName= lastname;
+        this.secondLastName= secondLastname;
         this.email= email;
         this.grade= grade;
         this.password= password;
