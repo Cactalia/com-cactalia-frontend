@@ -1,10 +1,3 @@
-/*
- * UserAdminService
- * DESCRIPCIÓN: Clase que consume los servicios del backend referentes a los usuarios administradores
- * FECHA DE CREACIÓN: 25/01/2022
- * CREADO POR: Oscar Emmanuel Lechuga Velazquez
- */
-
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';

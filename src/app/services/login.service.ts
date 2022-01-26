@@ -1,9 +1,3 @@
-/*
- * LoginService
- * DESCRIPCIÓN: Clase que consume los servicios del backend referentes a autenticación y permisos
- * FECHA DE CREACIÓN: 17/11/2020
- * CREADO POR: Oscar Emmanuel Lechuga Velázquez
- */
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Token } from '../models/Token.model';
