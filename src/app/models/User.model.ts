@@ -1,9 +1,3 @@
-/*
- * User
- * DESCRIPCIÓN: Clase que define las propiedades de los usuarios del sistema.
- * FECHA DE CREACIÓN: 17/11/2020
- * CREADO POR: Oscar Emmanuel Lechuga Velázquez
- */
 import { Role } from "./role.model";
 
 export class User{
