@@ -15,31 +15,28 @@ import { User } from 'src/app/models/User.model';
 export class AdministratorComponent implements OnInit {
 
   private tokenUser: Token;
-  private usersAdmins: User[] = [];
-  private totalUsersAdmins:number;
 
-  public newCoordinatorRequested: boolean = false;
-  private loadingNewCoordinator: boolean = false;
-  private newCoordinatorForm: FormGroup;
+  private users: User[] = [];
+  private totalElements:number;
   private actualPage:number;
   private maxPages:number;
-  private maxDate: Date;
-  private date: Date;
+
+  public newItemRequested: boolean = false;
+  private loading: boolean = false;
+
+  private newUserAdminForm: FormGroup;
 
   constructor(
     private userFB: FormBuilder,
     private loginService: LoginService,
     private userAdminService: UserAdminService,
   ) {
-    this.date = new Date();
-    this.maxDate = new Date();
-    this.maxDate.setDate(this.maxDate.getDate() - 1);
     this.actualPage=0;
     this.maxPages=1;
   }
 
   ngOnInit(): void {
-    this.newCoordinatorForm = this.userFB.group({
+    this.newUserAdminForm = this.userFB.group({
       name: ["", [Validators.required, Validators.pattern("[a-zA-ZñÑ áéíóúÁÉÍÓÚ]*"), Validators.minLength(3), Validators.maxLength(29)]],
       lastname: ["", [Validators.required, Validators.pattern("[a-zA-ZñÑ áéíóúÁÉÍÓÚ]*"), Validators.minLength(3), Validators.maxLength(29)]],
       secondLastname: ["", [Validators.required, Validators.pattern("[a-zA-ZñÑ áéíóúÁÉÍÓÚ]*"), Validators.minLength(3), Validators.maxLength(29)]],      
@@ -54,8 +51,6 @@ export class AdministratorComponent implements OnInit {
     }
   }
 
-  /*----------------------------------------------------------------------------
-  
   /**
   * getUserAdmins
   * Método que obtiene los administradores registrados.
@@ -64,10 +59,10 @@ export class AdministratorComponent implements OnInit {
   */
   getUserAdmins(page:number) {
     this.userAdminService.selectAll(page,5).subscribe(response => {
-      this.usersAdmins = response.page.content;
+      this.users = response.page.content;
       this.maxPages= response.page.totalPages;
       this.actualPage= page;
-      this.totalUsersAdmins= response.page.totalElements;
+      this.totalElements= response.page.totalElements;
     });
   }
 
@@ -79,7 +74,7 @@ export class AdministratorComponent implements OnInit {
    * registradas en la base de datos.
    */
   newCoordinatorRequest() {
-    this.newCoordinatorRequested = true;
+    this.newItemRequested = true;
     //this.getDegrees();
   }
 
@@ -88,7 +83,7 @@ export class AdministratorComponent implements OnInit {
    * Método que desaparece y reinicia el formulario de registro de coordinadores
    */
   newCoordinatorRequestCancel() {
-    this.newCoordinatorRequested = false;
+    this.newItemRequested = false;
     this.clear();
   }
 
@@ -97,7 +92,7 @@ export class AdministratorComponent implements OnInit {
    * Método que reinicia el formulario de registro de coordinador
    */
   clear() {
-    this.newCoordinatorForm.reset();
+    this.newUserAdminForm.reset();
   }
 
   /**

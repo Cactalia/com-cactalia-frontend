@@ -1,4 +1,4 @@
-<div class="container-fluid card shadow px-0" *ngIf="!newCoordinatorRequested">
+<div class="container-fluid card shadow px-0" *ngIf="!newItemRequested">
     <div class="row mt-4 mx-0">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h5>Lista de administradores</h5>
@@ -8,7 +8,7 @@
             </button>
         </div>
         <div class="col-12 align-items-center">
-            <h6>Total de administradores: {{totalUsersAdmins}}</h6>
+            <h6>Total de administradores: {{totalElements}}</h6>
         </div>
         <div class="table-responsive">
             <table class="col-12 table table-hover mt-2">
@@ -21,10 +21,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let userAdmin of usersAdmins">
-                        <td>{{userAdmin.names}} {{userAdmin.lastName}} {{userAdmin.secondLastName}}</td>
-                        <td>{{userAdmin.email}}</td>
-                        <td>{{userAdmin.phoneNumber}}</td>
+                    <tr *ngFor="let user of users">
+                        <td>{{user.names}} {{user.lastName}} {{user.secondLastName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.phoneNumber}}</td>
                         <td class="action">
                             <span title="Eliminar" class="material-icons" (click)="deleteCoordinator(coordinator.id)">delete</span>
                         </td>
@@ -52,10 +52,10 @@
     </nav>
 </div>
 
-<div class="container-fluid card shadow px-0 mb-4" *ngIf="newCoordinatorRequested">
+<div class="container-fluid card shadow px-0 mb-4" *ngIf="newItemRequested">
     <div class="row my-4 mx-0">
         <div class="col-12">
-            <form class="col-12" [formGroup]="newCoordinatorForm" (ngSubmit)="newCoordinator()">
+            <form class="col-12" [formGroup]="newUserAdminForm" (ngSubmit)="newCoordinator()">
                 <div class="row">
                     <div class="col-12">
                         <h5>Nuevo coordinador</h5>
@@ -67,27 +67,27 @@
                 <div class="row">
                     <div class="form-group col-12 col-md-4">
                         <label for="name">Nombre(s)</label>
-                        <input formControlName="name" type="text" class="form-control" [class.is-invalid]="newCoordinatorForm.get('name').errors" id="name" maxlength="29">
-                        <small *ngIf="newCoordinatorForm.get('name').errors?.required" class="form-text text-danger">Requerido.</small>
-                        <small *ngIf="newCoordinatorForm.get('name').errors?.pattern" class="form-text text-danger">No valido.</small>
-                        <small *ngIf="newCoordinatorForm.get('name').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
-                        <small *ngIf="newCoordinatorForm.get('name').errors?.maxlength" class="form-text text-danger">Máximo 29 caractéres.</small>
+                        <input formControlName="name" type="text" class="form-control" [class.is-invalid]="newUserAdminForm.get('name').errors" id="name" maxlength="29">
+                        <small *ngIf="newUserAdminForm.get('name').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('name').errors?.pattern" class="form-text text-danger">No valido.</small>
+                        <small *ngIf="newUserAdminForm.get('name').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
+                        <small *ngIf="newUserAdminForm.get('name').errors?.maxlength" class="form-text text-danger">Máximo 29 caractéres.</small>
                     </div>
                     <div class="form-group col-12 col-md-4">
                         <label for="lastname">Apellido paterno</label>
-                        <input formControlName="lastname" type="text" class="form-control" [class.is-invalid]="newCoordinatorForm.get('lastname').errors" id="lastname" maxlength="29">
-                        <small *ngIf="newCoordinatorForm.get('lastname').errors?.required" class="form-text text-danger">Requerido.</small>
-                        <small *ngIf="newCoordinatorForm.get('lastname').errors?.pattern" class="form-text text-danger">No valido.</small>
-                        <small *ngIf="newCoordinatorForm.get('lastname').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
-                        <small *ngIf="newCoordinatorForm.get('lastname').errors?.maxlength" class="form-text text-danger">Máximo 29 caractéres.</small>
+                        <input formControlName="lastname" type="text" class="form-control" [class.is-invalid]="newUserAdminForm.get('lastname').errors" id="lastname" maxlength="29">
+                        <small *ngIf="newUserAdminForm.get('lastname').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('lastname').errors?.pattern" class="form-text text-danger">No valido.</small>
+                        <small *ngIf="newUserAdminForm.get('lastname').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
+                        <small *ngIf="newUserAdminForm.get('lastname').errors?.maxlength" class="form-text text-danger">Máximo 29 caractéres.</small>
                     </div>
                     <div class="form-group col-12 col-md-4">
                         <label for="secondLastname">Apellido materno</label>
-                        <input formControlName="secondLastname" type="text" class="form-control" [class.is-invalid]="newCoordinatorForm.get('secondLastname').errors" id="secondLastname" maxlength="29">
-                        <small *ngIf="newCoordinatorForm.get('secondLastname').errors?.required" class="form-text text-danger">Requerido.</small>
-                        <small *ngIf="newCoordinatorForm.get('secondLastname').errors?.pattern" class="form-text text-danger">No valido.</small>
-                        <small *ngIf="newCoordinatorForm.get('secondLastname').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
-                        <small *ngIf="newCoordinatorForm.get('secondLastname').errors?.maxlength" class="form-text text-danger">Máximo 29 caractéres.</small>
+                        <input formControlName="secondLastname" type="text" class="form-control" [class.is-invalid]="newUserAdminForm.get('secondLastname').errors" id="secondLastname" maxlength="29">
+                        <small *ngIf="newUserAdminForm.get('secondLastname').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('secondLastname').errors?.pattern" class="form-text text-danger">No valido.</small>
+                        <small *ngIf="newUserAdminForm.get('secondLastname').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
+                        <small *ngIf="newUserAdminForm.get('secondLastname').errors?.maxlength" class="form-text text-danger">Máximo 29 caractéres.</small>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -98,19 +98,19 @@
                 <div class="row">
                     <div class="form-group col-12 col-md-4">
                         <label for="grade">Grado académico</label>
-                        <input formControlName="grade" type="text" class="form-control" [class.is-invalid]="newCoordinatorForm.get('grade').errors" id="name" maxlength="20" placeholder="ej. M. en C. C.">
-                        <small *ngIf="newCoordinatorForm.get('grade').errors?.required" class="form-text text-danger">Requerido.</small>
-                        <small *ngIf="newCoordinatorForm.get('grade').errors?.pattern" class="form-text text-danger">No valido.</small>
-                        <small *ngIf="newCoordinatorForm.get('grade').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
-                        <small *ngIf="newCoordinatorForm.get('grade').errors?.maxlength" class="form-text text-danger">Máximo 20 caractéres.</small>
+                        <input formControlName="grade" type="text" class="form-control" [class.is-invalid]="newUserAdminForm.get('grade').errors" id="name" maxlength="20" placeholder="ej. M. en C. C.">
+                        <small *ngIf="newUserAdminForm.get('grade').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('grade').errors?.pattern" class="form-text text-danger">No valido.</small>
+                        <small *ngIf="newUserAdminForm.get('grade').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
+                        <small *ngIf="newUserAdminForm.get('grade').errors?.maxlength" class="form-text text-danger">Máximo 20 caractéres.</small>
                     </div>
                     <div class="form-group col-12 col-md-4">
                         <label for="degree">Carrera a cargo</label>
-                        <select class="form-control" id="degree" formControlName="degree" [class.is-invalid]="newCoordinatorForm.get('degree').errors">
+                        <select class="form-control" id="degree" formControlName="degree" [class.is-invalid]="newUserAdminForm.get('degree').errors">
                           <option selected value="">Seleccionar</option>
                           <option *ngFor="let degreeItem of degrees" value="{{degreeItem.id}}">{{degreeItem.name}}</option>
                         </select>
-                        <small *ngIf="newCoordinatorForm.get('degree').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('degree').errors?.required" class="form-text text-danger">Requerido.</small>
                       </div>
                 </div>
                 <div class="row mt-3">
@@ -121,18 +121,18 @@
                 <div class="row">
                     <div class="form-group col-12 col-md-8">
                         <label for="email">Correo electrónico</label>
-                        <input formControlName="email" type="text" class="form-control" [class.is-invalid]="newCoordinatorForm.get('email').errors" id="email" maxlength="99" (keydown.space)="$event.preventDefault();">
-                        <small *ngIf="newCoordinatorForm.get('email').errors?.required" class="form-text text-danger">Requerido.</small>
-                        <small *ngIf="newCoordinatorForm.get('email').errors?.email" class="form-text text-danger">No valido.</small>
-                        <small *ngIf="newCoordinatorForm.get('email').errors?.minlength" class="form-text text-danger">Al menos 6 caractéres.</small>
-                        <small *ngIf="newCoordinatorForm.get('email').errors?.maxlength" class="form-text text-danger">Máximo 99 caractéres.</small>
+                        <input formControlName="email" type="text" class="form-control" [class.is-invalid]="newUserAdminForm.get('email').errors" id="email" maxlength="99" (keydown.space)="$event.preventDefault();">
+                        <small *ngIf="newUserAdminForm.get('email').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('email').errors?.email" class="form-text text-danger">No valido.</small>
+                        <small *ngIf="newUserAdminForm.get('email').errors?.minlength" class="form-text text-danger">Al menos 6 caractéres.</small>
+                        <small *ngIf="newUserAdminForm.get('email').errors?.maxlength" class="form-text text-danger">Máximo 99 caractéres.</small>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-12 d-flex justify-content-end">
-                        <button class="btn btn-secondary" type="button" (click)="newCoordinatorRequestCancel()" [disabled]="loadingNewCoordinator">Cancelar</button>
-                        <button class="btn btn-primary ml-2" [disabled]="newCoordinatorForm.invalid || loadingNewCoordinator">
-                            <span *ngIf="loadingNewCoordinator" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <button class="btn btn-secondary" type="button" (click)="newCoordinatorRequestCancel()" [disabled]="loading">Cancelar</button>
+                        <button class="btn btn-primary ml-2" [disabled]="newUserAdminForm.invalid || loading">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                             Registrar</button>
                     </div>
                 </div>
