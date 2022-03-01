@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { catchError } from 'rxjs/operators';
+import { User } from '../models/User.model';
 
 const API_USER_ADMIN_URL = environment.apiHostname + 'service-user/api/v1/user/admin';
 
@@ -32,9 +33,28 @@ export class UserAdminService {
     params = params.append('size', size.toString());
     params = params.append('page', page.toString());
 
-    return this.http.get<any>(API_USER_ADMIN_URL, { headers, params
-    }).pipe(
-      catchError(this.handleError)
+    return this.http.get<any>(API_USER_ADMIN_URL, { headers, params}).pipe(
+      catchError(e => {
+        return this.handleError(e);
+      })
+    );
+  }
+
+  /**
+   * newUserAdmin
+   * Método que registra un usuario administrador.
+   * @param newUser nuevo usuario administrador
+   */
+   newUserAdmin(newUser:User): Observable<any> {
+    const userToken = localStorage.getItem(environment.authTokenKey);
+    const headers = {
+      'Authorization': 'Bearer ' + userToken
+    }
+
+    return this.http.post(API_USER_ADMIN_URL + "/", newUser, { headers }).pipe(
+      catchError(e => {
+        return this.handleError(e);
+      })
     );
   }
 

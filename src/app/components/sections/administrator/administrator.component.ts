@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Token } from 'src/app/models/Token.model';
 import { LoginService } from 'src/app/services/login.service';
 import { UserAdminService } from 'src/app/services/userAdmin.service';
+import { AlertService } from 'src/app/utils/alert.service';
 import { environment } from 'src/environments/environment';
 import  Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -30,6 +31,7 @@ export class AdministratorComponent implements OnInit {
     private userFB: FormBuilder,
     private loginService: LoginService,
     private userAdminService: UserAdminService,
+    private errorAlertService: AlertService,
   ) {
     this.actualPage=0;
     this.maxPages=1;
@@ -37,12 +39,11 @@ export class AdministratorComponent implements OnInit {
 
   ngOnInit(): void {
     this.newUserAdminForm = this.userFB.group({
-      name: ["", [Validators.required, Validators.pattern("[a-zA-ZñÑ áéíóúÁÉÍÓÚ]*"), Validators.minLength(3), Validators.maxLength(29)]],
-      lastname: ["", [Validators.required, Validators.pattern("[a-zA-ZñÑ áéíóúÁÉÍÓÚ]*"), Validators.minLength(3), Validators.maxLength(29)]],
-      secondLastname: ["", [Validators.required, Validators.pattern("[a-zA-ZñÑ áéíóúÁÉÍÓÚ]*"), Validators.minLength(3), Validators.maxLength(29)]],      
+      names: ["", [Validators.required, Validators.pattern("[a-zA-ZñÑ áéíóúÁÉÍÓÚ]*"), Validators.minLength(3), Validators.maxLength(29)]],
+      lastName: ["", [Validators.required, Validators.pattern("[a-zA-ZñÑ áéíóúÁÉÍÓÚ]*"), Validators.minLength(3), Validators.maxLength(29)]],
+      secondLastName: ["", [Validators.required, Validators.pattern("[a-zA-ZñÑ áéíóúÁÉÍÓÚ]*"), Validators.minLength(3), Validators.maxLength(29)]],      
       email: ["", [Validators.required, Validators.email, Validators.minLength(6), Validators.maxLength(99)]],
-      grade: ["", [Validators.required, Validators.pattern("[a-zA-ZñÑ áéíóúÁÉÍÓÚ.]*"), Validators.minLength(3), Validators.maxLength(20)]],
-      degree: ["", [Validators.required]],
+      phoneNumber: ["", [Validators.required, Validators.pattern("[0-9]*"), Validators.minLength(10), Validators.maxLength(10)]],
     });
 
     if (localStorage.getItem(environment.authTokenKey) != null) {
@@ -63,55 +64,43 @@ export class AdministratorComponent implements OnInit {
       this.maxPages= response.page.totalPages;
       this.actualPage= page;
       this.totalElements= response.page.totalElements;
+    }, error => {
+      this.errorAlertService.alertError(error);
     });
   }
 
-  /*----------------------------------------------------------------------------
-
   /**
-   * newCoordinatorRequest
-   * Método que permite la visualización del formulario de registro de coordinadores y consulta las carreras
-   * registradas en la base de datos.
+   * newItemRequest
+   * Método que permite la visualización del formulario de registro
    */
-  newCoordinatorRequest() {
+  newItemRequest() {
     this.newItemRequested = true;
-    //this.getDegrees();
   }
 
   /**
-   * newClientRequestCancel
-   * Método que desaparece y reinicia el formulario de registro de coordinadores
+   * newItemRequestCancel
+   * Método que desaparece y reinicia el formulario de registro
    */
-  newCoordinatorRequestCancel() {
+   newItemRequestCancel() {
     this.newItemRequested = false;
     this.clear();
   }
-
+  
   /**
    * clear
-   * Método que reinicia el formulario de registro de coordinador
+   * Método que reinicia el formulario de registro
    */
   clear() {
     this.newUserAdminForm.reset();
   }
 
   /**
-   * getDegrees
-   * Método que obtiene los carreras sin coordinador
-   *
-  getDegrees() {
-    this.degreeService.selectDegreesWithoutCoordinator().subscribe(response => {
-      //this.degrees = response;
-    });
-  }
-
-  /**
-   * newCoordinator()
-   * Método que registra un nuevo coordinador
-   *
-  newCoordinator() {
+   * newUserAdmin()
+   * Método que registra un nuevo administrador
+   **/
+  newUserAdmin() {
     Swal.fire({
-      title: '¿Registrar nuevo coordinador?',
+      title: '¿Registrar nuevo administrador?',
       text: "Confirma esta acción",
       icon: 'question',
       showCancelButton: true,
@@ -122,70 +111,29 @@ export class AdministratorComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.loadingNewCoordinator = true;
-        const controls = this.newCoordinatorForm.controls;
-        //let degrees: Degree = new Degree();
-        /**let newCoordinator: Coordinator = new Coordinator(
-          null,
-          controls.name.value,
-          controls.lastname.value,
-          controls.secondLastname.value,
+        this.loading = true;
+        const controls = this.newUserAdminForm.controls;
+        
+        let newUser: User = new User(
+          controls.names.value,
+          controls.lastName.value,
+          controls.secondLastName.value,
           controls.email.value,
-          controls.grade.value,
-          "");
-          degrees.id = controls.degree.value;
-          newCoordinator.degree = degrees;
+          parseInt(controls.phoneNumber.value));
 
-        this.coordinatorService.createCoordinator(newCoordinator).subscribe(response => {
+        this.userAdminService.newUserAdmin(newUser).subscribe(response => {
           this.getUserAdmins(this.actualPage);
-          this.newCoordinatorRequestCancel();
+          this.newItemRequestCancel();
           this.clear();
-          this.loadingNewCoordinator = false;
-
-          Swal.fire({
-            icon: 'success',
-            title: '¡Éxito!',
-            text: 'Coordinador registrado correctamente.',
-            confirmButtonColor: '#55919e',
-            cancelButtonColor: '#9b9b9b',
-          });
+          this.loading = false;
+          this.errorAlertService.alertSuccess('Administrador registrado correctamente.');
         }, error => {
-          this.loadingNewCoordinator = false;
+          this.loading = false;
+          this.errorAlertService.alertError(error);
         });
       }
     })
   }
-
-  /**
-   * deleteCoordinator
-   * Método que elimina a un coordinador por su id
-   * @param id id del coordinador a eliminar
-   */
-  /**deleteCoordinator(id: number) {
-    Swal.fire({
-      title: '¿Eliminar coordinador?',
-      text: "No podrás revertir esto",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#55919e',
-      cancelButtonColor: '#9b9b9b',
-      reverseButtons: true,
-      confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.coordinatorService.deleteCoordinator(id).subscribe(response => {
-          this.getUserAdmins(this.actualPage);
-          Swal.fire({
-            icon: 'success',
-            title: '¡Éxito!',
-            text: 'Coordinador eliminado correctamente.',
-            confirmButtonColor: '#55919e',
-            cancelButtonColor: '#9b9b9b',
-          })
-        });
-      }
-    })
-  }/**/
+  
 }
 
