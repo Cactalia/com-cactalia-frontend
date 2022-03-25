@@ -5,6 +5,7 @@ import { UserClientService } from 'src/app/services/userClient.service';
 import { AlertService } from 'src/app/utils/alert.service';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/User.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client',
@@ -19,8 +20,9 @@ export class ClientComponent implements OnInit {
   totalElements:number;
   actualPage:number;
   maxPages:number;
-
+  
   constructor(
+    private router: Router,
     private loginService: LoginService,
     private userClientService: UserClientService,
     private errorAlertService: AlertService,
@@ -30,7 +32,9 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem(environment.authTokenKey) != null) {
+    if (localStorage.getItem(environment.authTokenKey) == null) {
+      this.router.navigateByUrl("/iniciar-sesion");
+    }else{
       this.tokenUser = this.loginService.getTokenModelByString(localStorage.getItem(environment.authTokenKey).split('.')[1]);
       this.getUserClients(this.actualPage);
     }

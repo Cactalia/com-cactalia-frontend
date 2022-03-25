@@ -7,6 +7,9 @@ export class User {
     secondLastName: string;
     email: string;
     phoneNumber: number;
+    birthday: string;
+    gender: string;
+    points: number;
     password: string;
     role: Role;
     access_token: string;

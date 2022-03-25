@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import  Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/User.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-administrator',
@@ -28,6 +29,7 @@ export class AdministratorComponent implements OnInit {
   private newUserAdminForm: FormGroup;
 
   constructor(
+    private router: Router,
     private userFB: FormBuilder,
     private loginService: LoginService,
     private userAdminService: UserAdminService,
@@ -46,7 +48,9 @@ export class AdministratorComponent implements OnInit {
       phoneNumber: ["", [Validators.required, Validators.pattern("[0-9]*"), Validators.minLength(10), Validators.maxLength(10)]],
     });
 
-    if (localStorage.getItem(environment.authTokenKey) != null) {
+    if (localStorage.getItem(environment.authTokenKey) == null) {
+      this.router.navigateByUrl("/iniciar-sesion");
+    }else{
       this.tokenUser = this.loginService.getTokenModelByString(localStorage.getItem(environment.authTokenKey).split('.')[1]);
       this.getUserAdmins(this.actualPage);
     }

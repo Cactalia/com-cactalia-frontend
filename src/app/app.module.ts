@@ -15,6 +15,7 @@ import { SidebarComponent } from './components/main/sidebar/sidebar.component';
 import { AdministratorComponent } from './components/sections/administrator/administrator.component';
 import { HomeComponent } from './components/sections/home/home.component';
 import { ClientComponent } from './components/sections/client/client.component';
+import { ClientProfileComponent } from './components/sections/client/client-profile/client-profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ClientComponent } from './components/sections/client/client.component';
     SidebarComponent,
     AdministratorComponent,
     HomeComponent,
-    ClientComponent
+    ClientComponent,
+    ClientProfileComponent
   ],
   imports: [
     BrowserModule,

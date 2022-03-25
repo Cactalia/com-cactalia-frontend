@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { catchError } from 'rxjs/operators';
-import { User } from '../models/User.model';
 
 const API_USER_CLIENT_URL = environment.apiHostname + 'service-client/api/v1/client';
 
@@ -13,14 +12,12 @@ const API_USER_CLIENT_URL = environment.apiHostname + 'service-client/api/v1/cli
 export class UserClientService {
 
   /**
-   * constructor
    * Método para inicializar el servicio
    * @param http cliente http
    */
    constructor(private http: HttpClient) { }
 
    /**
-   * selectAll
    * Método que solicita al backend los clientes registrados
    * @param page página a retornar
    */
@@ -41,7 +38,23 @@ export class UserClientService {
   }
 
   /**
-  * handleError
+   * Método que solicita al backend un cliente por su id
+   * @param id del usuario
+   */
+   findById(id: string): Observable<any> {
+    const userToken = localStorage.getItem(environment.authTokenKey);
+    const headers = {
+      'Authorization': 'Bearer ' + userToken
+    }
+    
+    return this.http.get<any>(API_USER_CLIENT_URL+"/"+id, { headers}).pipe(
+      catchError(e => {
+        return this.handleError(e);
+      })
+    );
+  }
+
+  /**
   * Método que retorna el error http suscitado
   * @param error error http
   */
