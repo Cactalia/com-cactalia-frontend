@@ -20,6 +20,9 @@ export class ClientComponent implements OnInit {
   totalElements:number;
   actualPage:number;
   maxPages:number;
+
+  showProfile: boolean = false ;
+  showProfileId: string;
   
   constructor(
     private router: Router,
@@ -55,6 +58,15 @@ export class ClientComponent implements OnInit {
     }, error => {
       this.errorAlertService.alertError(error);
     });
+  }
+
+  showClienProfile(clientId: string){
+    this.showProfile=true;
+    this.showProfileId = clientId;    
+  }
+
+  receiveReturnMessage($event) {
+    this.showProfile = $event
   }
 
 }

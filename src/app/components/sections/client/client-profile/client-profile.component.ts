@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Token } from 'src/app/models/Token.model';
 import { User } from 'src/app/models/User.model';
@@ -13,9 +13,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./client-profile.component.scss']
 })
 export class ClientProfileComponent implements OnInit {
+  
+  @Input() userId: string;
+  @Output() toReturnEvent = new EventEmitter<boolean>();
 
   tokenUser: Token;
-  userId: string ="efcbd75c-019c-4a39-b5ef-26386c6bc10f";
   user: User = new User("", "", "", "", 0);
   
   constructor(
@@ -46,4 +48,8 @@ export class ClientProfileComponent implements OnInit {
     });
   }
 
+  toReturn(){
+    this.toReturnEvent.emit(false);    
+  }
+  
 }
