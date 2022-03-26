@@ -34,10 +34,18 @@
         font-size: 16px;
         color: $gray;
     }
+    label,
+    .material-icons {
+        color: $golden;
+    }
     text-align: left;
     line-height: 23px;
     margin-top: 0px;
     margin-left: 170px;
+}
+
+.points {
+    color: $gray;
 }
 
 h5 {

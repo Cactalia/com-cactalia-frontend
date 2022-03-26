@@ -4,17 +4,23 @@
         <img src="../../../../../assets/img/user_client/photo.png" class="userPhoto">
     </div>
     <div class="row user-info-main">
-        <div class="col-9">
-            <h4 class="">{{this.user.names}} {{this.user.lastName}} {{this.user.secondLastName}}</h4>
+        <div class="col-12">
+            <h4>{{this.user.names}} {{this.user.lastName}} {{this.user.secondLastName}}</h4>
         </div>
-        <div class="col-3">
-            <h4 class="">Puntos: {{this.user.points}}</h4>
-        </div>
-
     </div>
+
     <div class="row user-info-secondary">
         <div class="col-12">
-            <h4 class="">{{this.user.email}}</h4>
+            <h4>{{this.user.email}}</h4>
+        </div>
+    </div>
+
+    <div class="row user-info-secondary">
+        <div class="col-12">
+            <label class="d-flex">
+                <span class="material-icons">savings</span>Puntos: &nbsp;
+                <span class="points">{{this.user.points}}</span>
+            </label>
         </div>
     </div>
 

@@ -1,60 +1,69 @@
 $primary: #55919e;
 $secondary: #e6eff2;
 $third: #d8d8bd;
-
 //pink e0cccb
 //beige #d8d8bd
-
 $white: #ffffff;
 $dark: #000000;
 $gray: #67696b;
-
+$golden: #bf930d;
 $cancelButtonColor: #9b9b9b;
 $confirmButtonColor: $primary;
-
 html {
-    overflow-y:scroll;
+    overflow-y: scroll;
 }
 
-input, button, a, p{
+input,
+button,
+a,
+p {
     font-family: 'Open Sans', sans-serif;
 }
 
-body{
+body {
     background: $secondary;
 }
 
-h1,h2,h3,h4,h5,h6, label{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
     font-family: 'Poppins', sans-serif !important;
 }
 
-label{
+label {
     color: $gray;
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited{
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
     background: $primary !important;
     border-color: $primary !important;
 }
 
-a{
+a {
     color: $primary;
 }
 
-a:hover{
+a:hover {
     color: $gray;
     text-decoration: none;
 }
 
-.material-icons{
+.material-icons {
     color: $gray;
     cursor: pointer;
 }
 
-.material-icons:hover{
+.material-icons:hover {
     color: $primary;
 }
 
-.swal2-height-auto{
+.swal2-height-auto {
     padding-right: 0px !important;
 }
