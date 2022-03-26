@@ -10,7 +10,7 @@
     border-radius: 100%;
     max-width: 140px;
     position: absolute;
-    top: 90px;
+    top: 130px;
     border: 4px solid white;
     margin-left: 40px;
     margin-right: auto;
@@ -38,6 +38,9 @@
     .material-icons {
         color: $golden;
     }
+    label {
+        display: flex;
+    }
     text-align: left;
     line-height: 23px;
     margin-top: 0px;
@@ -54,4 +57,27 @@ h5 {
 
 .card {
     overflow: hidden;
+}
+
+@media (max-width: 550px) {
+    .userPhoto {
+        top: 90px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .user-info-main {
+        h4 {
+            text-align: center;
+        }
+        margin-left: 0px;
+        margin-top: 70px;
+    }
+    .user-info-secondary {
+        text-align: center;
+        margin-left: 0px;
+    }
+    label {
+        text-align: center;
+        justify-content: center;
+    }
 }
