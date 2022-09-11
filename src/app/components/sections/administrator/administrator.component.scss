@@ -1,15 +1,14 @@
 @import "../../../../styles.scss";
-
-.card{
+.card {
     overflow: hidden;
 }
 
-h5{
-    color: $primary;
+h5 {
+    color: $four;
     display: inline;
 }
 
-th{
+th {
     font-family: 'Poppins', sans-serif !important;
     font-size: 16px;
     font-weight: 500;
@@ -17,21 +16,20 @@ th{
     color: $gray;
 }
 
-.action{
+.action {
     text-align: center;
 }
 
-td{
+td {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
 }
 
-.active a{
+.active a {
     background: $primary !important;
     border-color: $primary;
 }
 
-.page-link{
+.page-link {
     color: $gray;
 }
-
