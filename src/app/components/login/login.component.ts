@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
               imageHeight: 100,
               title: 'Oops... Dificultades técnicas.',
               text: 'Intentalo nuevamente. Si el problema persiste, repórtelo.',
-              confirmButtonColor: '#55919e',
+              confirmButtonColor: '#e66587',
               cancelButtonColor: '#9b9b9b',
             });
           }else{
@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
               title: 'Oops...',
               text: message,
               confirmButtonText: 'Cerrar',
-              confirmButtonColor: '#55919e',
+              confirmButtonColor: '#e66587',
             });
           }
         }

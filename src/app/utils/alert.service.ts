@@ -16,7 +16,7 @@ export class AlertService {
         imageHeight: 100,
         title: 'Oops... Dificultades técnicas.',
         text: 'Intentalo nuevamente. Si el problema persiste, repórtelo.',
-        confirmButtonColor: '#55919e',
+        confirmButtonColor: '#e66587',
         cancelButtonColor: '#9b9b9b',
       });
     }else{
@@ -27,7 +27,7 @@ export class AlertService {
         title: 'Oops...',
         text: message,
         confirmButtonText: 'Cerrar',
-        confirmButtonColor: '#55919e',
+        confirmButtonColor: '#e66587',
       });
     }
   }
@@ -38,7 +38,7 @@ export class AlertService {
       icon: 'success',
       title: '¡Éxito!',
       text: message,
-      confirmButtonColor: '#55919e',
+      confirmButtonColor: '#e66587',
       cancelButtonColor: '#9b9b9b',
     });
   }

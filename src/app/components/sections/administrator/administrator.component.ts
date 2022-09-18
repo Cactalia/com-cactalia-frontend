@@ -108,7 +108,7 @@ export class AdministratorComponent implements OnInit {
       text: "Confirma esta acción",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#55919e',
+      confirmButtonColor: '#e66587',
       cancelButtonColor: '#9b9b9b',
       reverseButtons: true,
       confirmButtonText: 'Registrar',
