@@ -61,6 +61,10 @@
 
 @media (max-width: 460px) {
     .container {
+        .row {
+            height: 100%;
+            align-items: center;
+        }
         .form {
             h3 {
                 font-size: 45px;
