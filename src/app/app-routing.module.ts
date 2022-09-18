@@ -6,6 +6,7 @@ import { NgxPermissionsGuard } from 'ngx-permissions';
 import { AdministratorComponent } from './components/sections/administrator/administrator.component';
 import { HomeComponent } from './components/sections/home/home.component';
 import { ClientComponent } from './components/sections/client/client.component';
+import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 
 const routes: Routes = [
   {
@@ -46,7 +47,8 @@ const routes: Routes = [
     ]
   },
   { path: 'iniciar-sesion', component: LoginComponent },
-  { path: '**', component: LoginComponent },
+  //{ path: '**', component: LoginComponent },
+  { path: '**', component: ComingSoonComponent },
 ];
 
 @NgModule({

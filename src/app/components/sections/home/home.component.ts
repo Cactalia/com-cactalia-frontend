@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem(environment.authTokenKey) == null) {
-      this.router.navigateByUrl("/iniciar-sesion");
+      //this.router.navigateByUrl("/iniciar-sesion");
+      this.router.navigateByUrl("/proximamente");
     }else{
       
     }
