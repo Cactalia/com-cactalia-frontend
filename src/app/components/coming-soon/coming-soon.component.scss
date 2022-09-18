@@ -72,3 +72,17 @@
         }
     }
 }
+
+@media (max-width: 370px) {
+    .container {
+        .row {
+            height: 100%;
+            align-items: center;
+        }
+        .form {
+            h3 {
+                font-size: 38px;
+            }
+        }
+    }
+}
