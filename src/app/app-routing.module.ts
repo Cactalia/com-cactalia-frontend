@@ -7,6 +7,7 @@ import { AdministratorComponent } from './components/sections/administrator/admi
 import { HomeComponent } from './components/sections/home/home.component';
 import { ClientComponent } from './components/sections/client/client.component';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
+import { CatalogsComponent } from './components/sections/public/catalogs/catalogs.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,7 @@ const routes: Routes = [
     ]
   },
   { path: 'iniciar-sesion', component: LoginComponent },
+  { path: 'catalogos', component: CatalogsComponent },
   //{ path: '**', component: LoginComponent },
   { path: '**', component: ComingSoonComponent },
 ];

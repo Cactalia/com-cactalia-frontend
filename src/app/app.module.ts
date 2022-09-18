@@ -17,6 +17,7 @@ import { HomeComponent } from './components/sections/home/home.component';
 import { ClientComponent } from './components/sections/client/client.component';
 import { ClientProfileComponent } from './components/sections/client/client-profile/client-profile.component';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
+import { CatalogsComponent } from './components/sections/public/catalogs/catalogs.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ComingSoonComponent } from './components/coming-soon/coming-soon.compon
     ClientComponent,
     ClientProfileComponent,
     ComingSoonComponent,
+    CatalogsComponent,
   ],
   imports: [
     BrowserModule,
