@@ -3,9 +3,7 @@ nav {
     justify-content: left;
 }
 
-.pdf-view {
-    border-radius: 20px !important;
-}
+.pdf-view {}
 
 .logo {
     width: 40px;
@@ -49,5 +47,8 @@ h3 {
 @media (max-width: 470px) {
     .navbar-brand {
         font-size: 12px;
+    }
+    .pdf-view {
+        max-height: 565px;
     }
 }
