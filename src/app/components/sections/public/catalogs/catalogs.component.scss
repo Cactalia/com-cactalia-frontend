@@ -62,3 +62,9 @@ h3 {
         max-height: 452px;
     }
 }
+
+@media (max-width: 370px) {
+    .pdf-view {
+        max-height: 424px;
+    }
+}
