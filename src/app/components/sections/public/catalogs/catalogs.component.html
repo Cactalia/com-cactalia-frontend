@@ -28,12 +28,12 @@
         <div class="collapse show mt-2" id="menuCatalog">
             <div class="row mx-0">
                 <div class="col-12 col-md-4 col-lg-2 mb-2">
-                    <button type="submit" class="btn btn-block btn-primary mr-3">Sudaderas
+                    <button type="submit" class="btn btn-block btn-primary mr-3" (click)="changePdfFile('https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview')">Sudaderas
                         <i class="fa-solid fa-vest-patches"></i>
                     </button>
                 </div>
                 <div class="col-12 col-md-4 col-lg-2 mb-2">
-                    <button type="submit" class="btn btn-block btn-primary mr-3">Maquillaje
+                    <button type="submit" class="btn btn-block btn-primary mr-3" (click)="changePdfFile('https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview')">Maquillaje
                         <i class="fa-solid fa-spa"></i>
                     </button>
                 </div>
@@ -45,33 +45,33 @@
             </div>
             <div class="row mx-0 mt-2 collapse" id="collapseCatalog">
                 <div class="col-6 col-md-4 col-lg-2 mb-2">
-                    <button type="submit" class="btn btn-block btn-secondary mr-3">Vestir casual</button>
+                    <button type="submit" class="btn btn-block btn-secondary mr-3" (click)="changePdfFile('https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview')">Vestir casual</button>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2 mb-2">
-                    <button type="submit" class="btn btn-block btn-secondary mr-3">Sandalias</button>
+                    <button type="submit" class="btn btn-block btn-secondary mr-3" (click)="changePdfFile('https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview')">Sandalias</button>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2 mb-2">
-                    <button type="submit" class="btn btn-block btn-secondary mr-3">Caballeros</button>
+                    <button type="submit" class="btn btn-block btn-secondary mr-3" (click)="changePdfFile('https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview')">Caballeros</button>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2 mb-2">
-                    <button type="submit" class="btn btn-block btn-secondary mr-3">Abrigador</button>
+                    <button type="submit" class="btn btn-block btn-secondary mr-3" (click)="changePdfFile('https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview')">Abrigador</button>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2 mb-2">
-                    <button type="submit" class="btn btn-block btn-secondary mr-3">Urbano</button>
+                    <button type="submit" class="btn btn-block btn-secondary mr-3" (click)="changePdfFile('https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview')">Urbano</button>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2 mb-2">
-                    <button type="submit" class="btn btn-block btn-secondary mr-3">Botas</button>
+                    <button type="submit" class="btn btn-block btn-secondary mr-3" (click)="changePdfFile('https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview')">Botas</button>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2 mb-2">
-                    <button type="submit" class="btn btn-block btn-secondary mr-3">Confort</button>
+                    <button type="submit" class="btn btn-block btn-secondary mr-3" (click)="changePdfFile('https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview')">Confort</button>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2 mb-2">
-                    <button type="submit" class="btn btn-block btn-secondary mr-3">Importados</button>
+                    <button type="submit" class="btn btn-block btn-secondary mr-3" (click)="changePdfFile('https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview')">Importados</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="url">
     <iframe class="pdf-view container card shadow px-0 my-4" [src]="safeSrc" width="100%" height="800px" allow="autoplay"></iframe>
 </div>

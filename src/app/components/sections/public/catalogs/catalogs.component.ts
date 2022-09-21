@@ -11,14 +11,12 @@ export class CatalogsComponent implements OnInit {
 
   public menuExpanded:boolean = true;
   safeSrc: SafeResourceUrl;
-  public url ="https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview";
+  public url = "";
 
   constructor(
     private router: Router,
     private sanitizer: DomSanitizer
-  ) { 
-    this.safeSrc =  this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-  }
+  ) { }
 
   ngOnInit(): void {
   }
@@ -29,6 +27,11 @@ export class CatalogsComponent implements OnInit {
 
   changeMenuExpanded(){
     this.menuExpanded = !this.menuExpanded;
+  }
+
+  changePdfFile(url:string){
+    this.url = url;
+    this.safeSrc =  this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
 }
