@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class CatalogsComponent implements OnInit {
 
+  public menuExpanded:boolean = true;
   safeSrc: SafeResourceUrl;
   public url ="https://drive.google.com/file/d/1_TGmXak_80gdF6u0zE7Ra4ue9EOnKEV3/preview";
 
@@ -24,6 +25,10 @@ export class CatalogsComponent implements OnInit {
 
   back(){
     this.router.navigateByUrl("/");
+  }
+
+  changeMenuExpanded(){
+    this.menuExpanded = !this.menuExpanded;
   }
 
 }
