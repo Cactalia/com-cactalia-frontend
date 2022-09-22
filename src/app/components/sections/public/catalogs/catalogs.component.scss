@@ -52,19 +52,4 @@ h3 {
     .navbar-brand {
         font-size: 12px;
     }
-    .pdf-view {
-        max-height: 565px;
-    }
-}
-
-@media (max-width: 390px) {
-    .pdf-view {
-        max-height: 452px;
-    }
-}
-
-@media (max-width: 370px) {
-    .pdf-view {
-        max-height: 424px;
-    }
 }
