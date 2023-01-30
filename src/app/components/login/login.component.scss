@@ -21,7 +21,7 @@
         }
 
         button {
-            background: $green !important;
+            background: $primary !important;
         }
 
         a {
@@ -34,7 +34,7 @@
 
 .container::before{
     content: "";
-    background-color: $green2;
+    background-color: $secondary;
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;

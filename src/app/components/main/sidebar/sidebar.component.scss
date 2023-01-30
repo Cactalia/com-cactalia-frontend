@@ -1,12 +1,12 @@
 @import "../../../../styles.scss";
 
 .active-link{
-    background: $gold;
+    background: $primary;
     border-radius: 5px;
 
     .nav-link{
         .nav-link-text, .material-icons{
-            color: #ffffff;
+            color: $white;
         }
     }
 }
@@ -26,6 +26,6 @@
     cursor: pointer;
 
     .nav-link-text, .material-icons{
-        color: $gold;
+        color: $primary;
     }
 }  

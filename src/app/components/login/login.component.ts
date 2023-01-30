@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/User.model';
-import { UserService } from 'src/app/services/user.service';
+import { Login } from 'src/app/models/Login.model';
+import { Error } from 'src/app/models/Error.model';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { LoginService } from '../../services/login.service';
@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userFB: FormBuilder,
     private loginService: LoginService,
-    private userService: UserService,
   ) { }
 
   /**
@@ -52,10 +51,10 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.loginService.login(controls.email.value, controls.password.value).subscribe(
         response => {
-          let user: User = response;
+          let token: Login = response;
           this.loading=false;
           if (typeof (Storage) !== 'undefined') {
-            localStorage.setItem(environment.authTokenKey, user.access_token);
+            localStorage.setItem(environment.authTokenKey, token.access_token);
             this.router.navigateByUrl("/");
           }
         },
@@ -68,16 +67,18 @@ export class LoginComponent implements OnInit {
               imageHeight: 100,
               title: 'Oops... Dificultades técnicas.',
               text: 'Intentalo nuevamente. Si el problema persiste, repórtelo.',
-              confirmButtonColor: '#2c5234',
+              confirmButtonColor: '#e66587',
               cancelButtonColor: '#9b9b9b',
             });
           }else{
+            let errors:Error[]=error;
+            let message = Array.prototype.map.call(errors, function(item) { return item.message; });
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: error,
-              confirmButtonColor: '#2c5234',
-              cancelButtonColor: '#9b9b9b',
+              text: message,
+              confirmButtonText: 'Cerrar',
+              confirmButtonColor: '#e66587',
             });
           }
         }
@@ -85,42 +86,4 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async restorePassword() {
-    const { value: email } = await Swal.fire({
-      html:'<h3>Restablecer contraseña</h3>'+
-          '<p>Se enviará una nueva contraseña por correo electrónico si existe una cuenta asociada.</p>',
-      input: 'email',
-      inputPlaceholder: 'Correo electrónico',
-      showCancelButton: true,
-      reverseButtons: true,
-      confirmButtonColor: '#2c5234',
-      cancelButtonColor: '#9b9b9b',
-      confirmButtonText: 'Enviar',
-      cancelButtonText: 'Cancelar',
-      inputValidator: (value) => {
-        return new Promise((resolve) => {
-          const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          if (!re.test(String(value).toLowerCase())) {
-            resolve('Correo electrónico inválido.')
-          }else{
-            resolve('')
-          }
-        })
-      }
-    })    
-    if (email) {
-      this.userService.resetPassword(email).subscribe(
-        response =>{
-          Swal.fire({
-            icon: 'success',
-            title: '¡Éxito!',
-            text: 'Solicitud enviada correctamente.',
-            confirmButtonColor: '#2c5234',
-            cancelButtonColor: '#9b9b9b',
-            confirmButtonText: 'Cerrar',
-          });
-        }
-      );
-    }
-  }
 }

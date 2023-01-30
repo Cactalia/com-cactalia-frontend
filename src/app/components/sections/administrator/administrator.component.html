@@ -1,0 +1,123 @@
+<div class="container-fluid card shadow px-0" *ngIf="!newItemRequested">
+    <div class="row mt-4 mx-0">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h5>Lista de administradores</h5>
+            <button class="btn btn-primary d-flex" type="button" (click)="newItemRequest()">
+                <span class="material-icons text-light mr-1">add</span>
+                Nuevo
+            </button>
+        </div>
+        <div class="col-12 align-items-center">
+            <h6>Total de administradores: {{totalElements}}</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="col-12 table table-hover mt-2">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre completo</th>
+                        <th scope="col">Correo electrónico</th>
+                        <th scope="col">Teléfono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{user.names}} {{user.lastName}} {{user.secondLastName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.phoneNumber}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="actualPage<=0">
+                <button class="page-link" (click)="this.getUserAdmins(actualPage-1)">Anterior</button>
+            </li>
+
+            <li class="page-item" *ngIf="(actualPage-1)>0"> <button class="page-link" (click)="this.getCoordinators(actualPage-2)">{{actualPage-1}}</button></li>
+            <li class="page-item" *ngIf="(actualPage)>0"> <button class="page-link" (click)="this.getUserAdmins(actualPage-1)">{{actualPage}}</button></li>
+            <li class="page-item active"><a class="page-link">{{actualPage+1}}</a></li>
+            <li class="page-item" *ngIf="(actualPage+2)<=maxPages"><button class="page-link" (click)="this.getUserAdmins(actualPage+1)">{{actualPage+2}}</button></li>
+            <li class="page-item" *ngIf="(actualPage+3)<=maxPages"><button class="page-link" (click)="this.getUserAdmins(actualPage+2)">{{actualPage+3}}</button></li>
+
+            <li class="page-item" [class.disabled]="(actualPage+1)>=maxPages">
+                <button class="page-link" (click)="this.getUserAdmins(actualPage+1)">Siguiente</button>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container-fluid card shadow px-0 mb-4" *ngIf="newItemRequested">
+    <div class="row my-4 mx-0">
+        <div class="col-12">
+            <form class="col-12" [formGroup]="newUserAdminForm" (ngSubmit)="newUserAdmin()">
+                <div class="row">
+                    <div class="col-12">
+                        <h5>Nuevo administrador</h5>
+                    </div>
+                    <div class="col-12">
+                        <h6>Información personal</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-12 col-md-4">
+                        <label for="names">Nombre(s)</label>
+                        <input formControlName="names" type="text" class="form-control" [class.is-invalid]="newUserAdminForm.get('names').errors" id="names" maxlength="29">
+                        <small *ngIf="newUserAdminForm.get('names').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('names').errors?.pattern" class="form-text text-danger">No valido.</small>
+                        <small *ngIf="newUserAdminForm.get('names').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
+                        <small *ngIf="newUserAdminForm.get('names').errors?.maxlength" class="form-text text-danger">Máximo 29 caractéres.</small>
+                    </div>
+                    <div class="form-group col-12 col-md-4">
+                        <label for="lastName">Apellido paterno</label>
+                        <input formControlName="lastName" type="text" class="form-control" [class.is-invalid]="newUserAdminForm.get('lastName').errors" id="lastName" maxlength="29">
+                        <small *ngIf="newUserAdminForm.get('lastName').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('lastName').errors?.pattern" class="form-text text-danger">No valido.</small>
+                        <small *ngIf="newUserAdminForm.get('lastName').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
+                        <small *ngIf="newUserAdminForm.get('lastName').errors?.maxlength" class="form-text text-danger">Máximo 29 caractéres.</small>
+                    </div>
+                    <div class="form-group col-12 col-md-4">
+                        <label for="secondLastName">Apellido materno</label>
+                        <input formControlName="secondLastName" type="text" class="form-control" [class.is-invalid]="newUserAdminForm.get('secondLastName').errors" id="secondLastName" maxlength="29">
+                        <small *ngIf="newUserAdminForm.get('secondLastName').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('secondLastName').errors?.pattern" class="form-text text-danger">No valido.</small>
+                        <small *ngIf="newUserAdminForm.get('secondLastName').errors?.minlength" class="form-text text-danger">Al menos 3 caractéres.</small>
+                        <small *ngIf="newUserAdminForm.get('secondLastName').errors?.maxlength" class="form-text text-danger">Máximo 29 caractéres.</small>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <h6>Información de contacto</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-12 col-md-8">
+                        <label for="email">Correo electrónico</label>
+                        <input formControlName="email" type="text" class="form-control" [class.is-invalid]="newUserAdminForm.get('email').errors" id="email" maxlength="99" (keydown.space)="$event.preventDefault();">
+                        <small *ngIf="newUserAdminForm.get('email').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('email').errors?.email" class="form-text text-danger">No valido.</small>
+                        <small *ngIf="newUserAdminForm.get('email').errors?.minlength" class="form-text text-danger">Al menos 6 caractéres.</small>
+                        <small *ngIf="newUserAdminForm.get('email').errors?.maxlength" class="form-text text-danger">Máximo 99 caractéres.</small>
+                    </div>
+                    <div class="form-group col-12 col-md-4">
+                        <label for="phoneNumber">Teléfono</label>
+                        <input formControlName="phoneNumber" type="text" class="form-control" [class.is-invalid]="newUserAdminForm.get('phoneNumber').errors" id="phoneNumber" maxlength="10" (keydown.space)="$event.preventDefault();">
+                        <small *ngIf="newUserAdminForm.get('phoneNumber').errors?.required" class="form-text text-danger">Requerido.</small>
+                        <small *ngIf="newUserAdminForm.get('phoneNumber').errors?.pattern" class="form-text text-danger">No valido.</small>
+                        <small *ngIf="newUserAdminForm.get('phoneNumber').errors?.minlength" class="form-text text-danger">Al menos 10 dígitos.</small>
+                        <small *ngIf="newUserAdminForm.get('phoneNumber').errors?.maxlength" class="form-text text-danger">Máximo 10 dígitos.</small>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-12 d-flex justify-content-end">
+                        <button class="btn btn-secondary" type="button" (click)="newItemRequestCancel()" [disabled]="loading">Cancelar</button>
+                        <button class="btn btn-primary ml-2" [disabled]="newUserAdminForm.invalid || loading">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Registrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -5,7 +5,7 @@ nav{
 }
 
 .logo{
-    width: 55px;;
+    width: 40px;;
 }
 
 .navbar-brand {
@@ -13,18 +13,13 @@ nav{
     display: block;
     font-size: 15px;
 
-    .t1{
-        font-weight: 600;
-        border-bottom: 1px solid $dark;
+    h1 {
+        color: $gray;
+        font-weight: 800;
+        font-size: 25px;
+        display: inline-block;
     }
 
-    .t2{
-        font-weight: 300;
-    }
-}
-
-.exit{
-    padding-top: 4px;
 }
 
 ul{

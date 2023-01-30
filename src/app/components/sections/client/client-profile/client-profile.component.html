@@ -1,0 +1,49 @@
+<div class="container-fluid card pb-4 shadow">
+    <div class="row">
+        <img src="../../../../../assets/img/user_client/bar.jpg" class="bar">
+        <img src="../../../../../assets/img/user_client/photo.png" class="userPhoto">
+    </div>
+    <div class="row user-info-main">
+        <div class="col-12">
+            <h4>{{this.user.names}} {{this.user.lastName}} {{this.user.secondLastName}}</h4>
+        </div>
+    </div>
+
+    <div class="row user-info-secondary">
+        <div class="col-12">
+            <h4>{{this.user.email}}</h4>
+        </div>
+    </div>
+
+    <div class="row user-info-secondary">
+        <div class="col-12">
+            <label class="d-flex">
+                <span class="material-icons">savings</span>Puntos: &nbsp;
+                <span class="points">{{this.user.points}}</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12 col-md-4 d-block text-center">
+            <label class="m-0">Teléfono:</label>
+            <p>{{this.user.phoneNumber}}</p>
+        </div>
+        <div class="col-12 col-md-4 d-block text-center">
+            <label class="m-0">Fecha de nacimiento:</label>
+            <p>{{this.user.birthday}}</p>
+        </div>
+        <div class="col-12 col-md-4 d-block text-center">
+            <label class="m-0">Género:</label>
+            <p *ngIf="this.user.gender == 'M'">Masculino</p>
+            <p *ngIf="this.user.gender == 'F'">Femenino</p>
+
+        </div>
+    </div>
+
+    <div class="row container-fluid my-2">
+        <div class="col-12 d-flex justify-content-end">
+            <button class="btn btn-secondary" type="button" (click)="toReturn()">Regresar</button>
+        </div>
+    </div>
+</div>
