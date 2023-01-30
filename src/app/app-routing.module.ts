@@ -10,46 +10,8 @@ import { ComingSoonComponent } from './components/coming-soon/coming-soon.compon
 import { CatalogsComponent } from './components/sections/public/catalogs/catalogs.component';
 
 const routes: Routes = [
-  {
-    path: '', component: MainComponent,
-    children: [
-      { path: '', component: HomeComponent },
-
-      {
-        path: 'inicio', component: HomeComponent, canActivate: [NgxPermissionsGuard],
-        data: {
-          permissions: {
-            only: ['ROLE_ADMIN'],
-            redirectTo: '/iniciar-sesion'
-          }
-        }
-      },
-
-      {
-        path: 'admin/administradores', component: AdministratorComponent, canActivate: [NgxPermissionsGuard],
-        data: {
-          permissions: {
-            only: ['ROLE_ADMIN'],
-            redirectTo: '/perfil'
-          }
-        }
-      },
-
-      {
-        path: 'admin/clientes', component: ClientComponent, canActivate: [NgxPermissionsGuard],
-        data: {
-          permissions: {
-            only: ['ROLE_ADMIN'],
-            redirectTo: '/perfil'
-          }
-        }
-      },
-
-    ]
-  },
   { path: 'iniciar-sesion', component: LoginComponent },
   { path: 'catalogos', component: CatalogsComponent },
-  //{ path: '**', component: LoginComponent },
   { path: '**', component: ComingSoonComponent },
 ];
 

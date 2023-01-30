@@ -36,18 +36,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
-/* harmony import */ var _components_main_main_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/main/main.component */ "./src/app/components/main/main.component.ts");
-/* harmony import */ var ngx_permissions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-permissions */ "./node_modules/ngx-permissions/__ivy_ngcc__/fesm2015/ngx-permissions.js");
-/* harmony import */ var _components_sections_administrator_administrator_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/sections/administrator/administrator.component */ "./src/app/components/sections/administrator/administrator.component.ts");
-/* harmony import */ var _components_sections_home_home_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/sections/home/home.component */ "./src/app/components/sections/home/home.component.ts");
-/* harmony import */ var _components_sections_client_client_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/sections/client/client.component */ "./src/app/components/sections/client/client.component.ts");
-/* harmony import */ var _components_coming_soon_coming_soon_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/coming-soon/coming-soon.component */ "./src/app/components/coming-soon/coming-soon.component.ts");
-/* harmony import */ var _components_sections_public_catalogs_catalogs_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/sections/public/catalogs/catalogs.component */ "./src/app/components/sections/public/catalogs/catalogs.component.ts");
-
-
-
-
-
+/* harmony import */ var _components_coming_soon_coming_soon_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/coming-soon/coming-soon.component */ "./src/app/components/coming-soon/coming-soon.component.ts");
+/* harmony import */ var _components_sections_public_catalogs_catalogs_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/sections/public/catalogs/catalogs.component */ "./src/app/components/sections/public/catalogs/catalogs.component.ts");
 
 
 
@@ -56,43 +46,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    {
-        path: '', component: _components_main_main_component__WEBPACK_IMPORTED_MODULE_3__["MainComponent"],
-        children: [
-            { path: '', component: _components_sections_home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"] },
-            {
-                path: 'inicio', component: _components_sections_home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"], canActivate: [ngx_permissions__WEBPACK_IMPORTED_MODULE_4__["NgxPermissionsGuard"]],
-                data: {
-                    permissions: {
-                        only: ['ROLE_ADMIN'],
-                        redirectTo: '/iniciar-sesion'
-                    }
-                }
-            },
-            {
-                path: 'admin/administradores', component: _components_sections_administrator_administrator_component__WEBPACK_IMPORTED_MODULE_5__["AdministratorComponent"], canActivate: [ngx_permissions__WEBPACK_IMPORTED_MODULE_4__["NgxPermissionsGuard"]],
-                data: {
-                    permissions: {
-                        only: ['ROLE_ADMIN'],
-                        redirectTo: '/perfil'
-                    }
-                }
-            },
-            {
-                path: 'admin/clientes', component: _components_sections_client_client_component__WEBPACK_IMPORTED_MODULE_7__["ClientComponent"], canActivate: [ngx_permissions__WEBPACK_IMPORTED_MODULE_4__["NgxPermissionsGuard"]],
-                data: {
-                    permissions: {
-                        only: ['ROLE_ADMIN'],
-                        redirectTo: '/perfil'
-                    }
-                }
-            },
-        ]
-    },
     { path: 'iniciar-sesion', component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"] },
-    { path: 'catalogos', component: _components_sections_public_catalogs_catalogs_component__WEBPACK_IMPORTED_MODULE_9__["CatalogsComponent"] },
-    //{ path: '**', component: LoginComponent },
-    { path: '**', component: _components_coming_soon_coming_soon_component__WEBPACK_IMPORTED_MODULE_8__["ComingSoonComponent"] },
+    { path: 'catalogos', component: _components_sections_public_catalogs_catalogs_component__WEBPACK_IMPORTED_MODULE_4__["CatalogsComponent"] },
+    { path: '**', component: _components_coming_soon_coming_soon_component__WEBPACK_IMPORTED_MODULE_3__["ComingSoonComponent"] },
 ];
 class AppRoutingModule {
 }
