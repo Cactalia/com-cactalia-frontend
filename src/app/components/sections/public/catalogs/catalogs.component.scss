@@ -7,23 +7,27 @@ nav {
 
 .logo {
     width: 40px;
-    ;
+    margin-right: 5px;
 }
 
 .gray {
     color: $gray;
 }
 
+h5{
+    font-family: "cactus", Helvetica, sans-serif !important;
+    font-size: 35px !important;
+    color: $golden;
+}
+
 .navbar-brand {
     color: $dark;
     display: block;
     font-size: 15px;
-    h1 {
-        color: $gray;
-        font-weight: 800;
-        font-size: 25px;
-        display: inline-block;
-    }
+    
+}
+.logo_name {
+    max-width: 10%;
 }
 
 ul {
@@ -40,16 +44,25 @@ h3 {
     .logo {
         margin-left: 10px;
     }
+    .logo_name {
+        max-width: 17%;
+    }
 }
 
 @media (max-width: 518px) {
     .navbar-brand {
         font-size: 13px;
     }
+    .logo_name {
+        max-width: 24%;
+    }
 }
 
 @media (max-width: 470px) {
     .navbar-brand {
         font-size: 12px;
+    }
+    .logo_name {
+        max-width: 24%;
     }
 }
